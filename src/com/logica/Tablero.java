@@ -75,13 +75,43 @@ class LaminaTablero extends JPanel{
 		
 		JPanel barraOpciones=new JPanel();
 		
-		barraOpciones.setLayout(new BoxLayout(barraOpciones,BoxLayout.Y_AXIS));
+		barraOpciones.setLayout(new BorderLayout());
+		
+		Box cajaBarraLateral=Box.createVerticalBox();
+		
+		cajaBarraLateral.add(Box.createVerticalStrut(180));
+		
+		
 		
 		JLabel tiempo=new JLabel("Tiempo:");
 		
+		tiempo.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		cajaBarraLateral.add(tiempo);
+		
+		cajaBarraLateral.add(Box.createVerticalStrut(20));
+		
+		
+		
+		
 		JComboBox miCombo=new JComboBox();
 		
+		miCombo.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		miCombo.setMaximumSize(new Dimension(100,20) );
+		
+		cajaBarraLateral.add(miCombo);
+		
+		cajaBarraLateral.add(Box.createVerticalStrut(20));
+		
+		
+		
+		
 		JButton jugar=new JButton("Jugar");
+		
+		jugar.setAlignmentX(Component.CENTER_ALIGNMENT);
+		
+		cajaBarraLateral.add(jugar);
 		
 		miCombo.addItem("1 min (Bullet)");
 		
@@ -89,14 +119,12 @@ class LaminaTablero extends JPanel{
 		
 		miCombo.addItem("10 min (Normal)");
 		
-		barraOpciones.add(tiempo);
-		
-		barraOpciones.add(miCombo);
-		
-		barraOpciones.add(jugar);
-		
 		add(barraOpciones,BorderLayout.EAST);
-
+		
+		
+		barraOpciones.add(cajaBarraLateral);
+		
+	
 		
 	}
 	
