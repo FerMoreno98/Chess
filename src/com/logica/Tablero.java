@@ -1,8 +1,7 @@
 package com.logica;
 
 import java.awt.*;
-
-
+import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 
@@ -54,6 +53,8 @@ class LaminaTablero extends JPanel{
 	private JPanel laminaCasillas;
 	
 	private String [] [] nombreCasilla;
+	
+	private JButton boton;
 	
 	public LaminaTablero(){
 		
@@ -133,6 +134,7 @@ class LaminaTablero extends JPanel{
 		LineBorder borde=new LineBorder(Color.black, 1);
 		
 		
+		
 		char letra='a';
 			
 		for (int i = 0; i < 8; i++) {
@@ -157,28 +159,34 @@ class LaminaTablero extends JPanel{
 				//para colocar los peones blancos en su poscion inicial
 				
 				if(i==6) {
+				
+					Piezas p=new Peon("Blanco",i,j,new ImageIcon(getClass().getResource("/images/peonblanco.gif")));
 					
-					Piezas p=new Peon("Blanco",i,j);
+					JLabel icono=new JLabel(p.getImagenPieza());
 					
-					p.colocarPieza(casilla);
+					casilla.add(icono);
 					
 				}
 				
 				// para colocar las torres negras en su poscion inicial
 				
 				if(i==0 && j==0) {
+
+					Piezas p=new Torre("Negro",i,j,new ImageIcon(getClass().getResource("/images/torre.gif")));
 					
-					Piezas p=new Torre("Negro",i,j);
+					JLabel icono=new JLabel(p.getImagenPieza());
 					
-					p.colocarPieza(casilla);
+					casilla.add(icono);
 					
 				}
 				
 				if(i==0 && j==7) {
+
+					Piezas p=new Torre("Negro",i,j,new ImageIcon(getClass().getResource("/images/torre.gif")));
 					
-					Piezas p=new Torre("Negro",i,j);
+					JLabel icono=new JLabel(p.getImagenPieza());
 					
-					p.colocarPieza(casilla);
+					casilla.add(icono);
 					
 				}
 				
@@ -187,17 +195,21 @@ class LaminaTablero extends JPanel{
 				
 				if(i==0 && j==1) {
 					
-					Piezas p=new Caballo("Negro",i,j);
+					Piezas p=new Caballo("Negro",i,j,new ImageIcon(getClass().getResource("/images/caballo.gif")));
 					
-					p.colocarPieza(casilla);
+					JLabel icono=new JLabel(p.getImagenPieza());
+					
+					casilla.add(icono);
 					
 				}
 				
 				if(i==0 && j==6) {
 					
-					Piezas p=new Caballo("Negro",i,j);
+					Piezas p=new Caballo("Negro",i,j,new ImageIcon(getClass().getResource("/images/caballo.gif")));
 					
-					p.colocarPieza(casilla);
+					JLabel icono=new JLabel(p.getImagenPieza());
+					
+					casilla.add(icono);
 					
 				}
 				
@@ -206,27 +218,35 @@ class LaminaTablero extends JPanel{
 				
 				if(i==0 && j==2) {
 					
-					Piezas p=new Alfil("Negro",i,j);
+					Piezas p=new Alfil("Negro",i,j,new ImageIcon(getClass().getResource("/images/alfil.gif")));
 					
-					p.colocarPieza(casilla);
+					JLabel icono=new JLabel(p.getImagenPieza());
+					
+					casilla.add(icono);
 					
 				}
 				
 				if(i==0 && j==5) {
 					
-					Piezas p=new Alfil("Negro",i,j);
+					Piezas p=new Alfil("Negro",i,j,new ImageIcon(getClass().getResource("/images/alfil.gif")));
 					
-					p.colocarPieza(casilla);
+					JLabel icono=new JLabel(p.getImagenPieza());
+					
+					casilla.add(icono);
+					
 					
 				}
 				
 	// para colocar las DAMA Negro en su poscion inicial
 				
 				if(i==0 && j==3) {
+
+					Piezas p=new Dama("Negro",i,j,new ImageIcon(getClass().getResource("/images/dama.gif")));
 					
-					Piezas p=new Dama("Negro",i,j);
+					JLabel icono=new JLabel(p.getImagenPieza());
 					
-					p.colocarPieza(casilla);
+					casilla.add(icono);
+					
 					
 				}
 				
@@ -234,9 +254,14 @@ class LaminaTablero extends JPanel{
 				
 				if(i==0 && j==4) {
 					
-					Piezas p=new Rey("Negro",i,j);
 					
-					p.colocarPieza(casilla);
+					
+					Piezas p=new Rey("Negro",i,j,new ImageIcon(getClass().getResource("/images/rey.gif")));
+					
+					JLabel icono=new JLabel(p.getImagenPieza());
+					
+					casilla.add(icono);
+					
 					
 				}
 				
@@ -280,9 +305,11 @@ class LaminaTablero extends JPanel{
 				
 				if(i==1) {
 					
-					Piezas p=new Peon("Negro",i,k);
+					Piezas p=new Peon("Negro",i,k,new ImageIcon(getClass().getResource("/images/peon.gif")));
 					
-					p.colocarPieza(casilla);
+					JLabel icono=new JLabel(p.getImagenPieza());
+					
+					casilla.add(icono);
 					
 				}
 				
@@ -291,17 +318,21 @@ class LaminaTablero extends JPanel{
 				
 				if(i==7 && k==0) {
 					
-					Piezas p=new Torre("Blanco",i,k);
+					Piezas p=new Torre("Blanco",i,k,new ImageIcon(getClass().getResource("/images/torreBlanca.gif")));
 					
-					p.colocarPieza(casilla);
+					JLabel icono=new JLabel(p.getImagenPieza());
+					
+					casilla.add(icono);
 					
 				}
 				
 				if(i==7 && k==7) {
+
+					Piezas p=new Torre("Blanco",i,k,new ImageIcon(getClass().getResource("/images/torreBlanca.gif")));
 					
-					Piezas p=new Torre("Blanco",i,k);
+					JLabel icono=new JLabel(p.getImagenPieza());
 					
-					p.colocarPieza(casilla);
+					casilla.add(icono);
 					
 				}
 				
@@ -309,17 +340,22 @@ class LaminaTablero extends JPanel{
 				
 				if(i==7 && k==6) {
 					
-					Piezas p=new Caballo("Blanco",i,k);
 					
-					p.colocarPieza(casilla);
+					Piezas p=new Caballo("Blanco",i,k,new ImageIcon(getClass().getResource("/images/caballoblanco.gif")));
+					
+					JLabel icono=new JLabel(p.getImagenPieza());
+					
+					casilla.add(icono);
 					
 				}
 				
 				if(i==7 && k==1) {
+
+					Piezas p=new Caballo("Blanco",i,k,new ImageIcon(getClass().getResource("/images/caballoblanco.gif")));
 					
-					Piezas p=new Caballo("Blanco",i,k);
+					JLabel icono=new JLabel(p.getImagenPieza());
 					
-					p.colocarPieza(casilla);
+					casilla.add(icono);
 					
 				}
 				
@@ -327,17 +363,24 @@ class LaminaTablero extends JPanel{
 				
 				if(i==7 && k==5) {
 					
-					Piezas p=new Alfil("Blanco",i,k);
+					Piezas p=new Alfil("Blanco",i,k,new ImageIcon(getClass().getResource("/images/alfilBlanco.gif")));
 					
-					p.colocarPieza(casilla);
+					JLabel icono=new JLabel(p.getImagenPieza());
+					
+					casilla.add(icono);
 					
 				}
 				
 				if(i==7 && k==2) {
 					
-					Piezas p=new Alfil("Blanco",i,k);
 					
-					p.colocarPieza(casilla);
+					
+					Piezas p=new Alfil("Blanco",i,k,new ImageIcon(getClass().getResource("/images/alfilBlanco.gif")));
+					
+					JLabel icono=new JLabel(p.getImagenPieza());
+					
+					casilla.add(icono);
+					
 					
 				}
 				
@@ -346,9 +389,15 @@ class LaminaTablero extends JPanel{
 				
 				if(i==7 && k==3) {
 					
-					Piezas p=new Dama("Blanco",i,k);
 					
-					p.colocarPieza(casilla);
+					
+					Piezas p=new Dama("Blanco",i,k,new ImageIcon(getClass().getResource("/images/damablanca.gif")));
+					
+					JLabel icono=new JLabel(p.getImagenPieza());
+					
+					casilla.add(icono);
+					
+		
 					
 				}
 				
@@ -356,10 +405,13 @@ class LaminaTablero extends JPanel{
 				
 				if(i==7 && k==4) {
 					
-					Piezas p=new Rey("Blanco",i,k);
 					
-					p.colocarPieza(casilla);
 					
+					Piezas p=new Rey("Blanco",i,k,new ImageIcon(getClass().getResource("/images/reyblanco.gif")));
+					
+					JLabel icono=new JLabel(p.getImagenPieza());
+					
+					casilla.add(icono);
 				}
 				
 				
@@ -385,6 +437,33 @@ class LaminaTablero extends JPanel{
 			
 		}
 		
+		
+	
+			
+		
+		
+	}
+	
+	private class ControladorMovimiento implements ActionListener{
+		
+		
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+			JButton botonPulsado=(JButton)e.getSource();
+			
+			if(botonPulsado.getText()=="Peon") {
+				
+				
+				
+			}
+			
+		}
+		
+		public void moverPieza(int nuevaFila,int nuevaColumna, Piezas[][] movimiento) {
+			
 			
 		
 		
@@ -392,6 +471,9 @@ class LaminaTablero extends JPanel{
 	
 	
 	
+}
+	
+
 }
 
 

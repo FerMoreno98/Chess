@@ -12,19 +12,22 @@ public abstract class Piezas {
 	
 	protected int columnas;
 	
-	//protected ImageIcon imagenPieza;
+	protected ImageIcon imagenPieza;
 	
 	
 
-	public Piezas(String color, int filas, int columnas) {
+
+	
+	public Piezas(String color, int filas, int columnas,ImageIcon imagenPieza) {
 		super();
 		this.color = color;
 		this.filas = filas;
 		this.columnas = columnas;
+		this.imagenPieza=imagenPieza;
 		
 	}
 	
-	public abstract boolean esMovimientoValido(int nuevaFila,int nuevaColumna,Tablero tablero);
+	public abstract boolean esMovimientoValido(int nuevaFila,int nuevaColumna);
 	
 	
 	
@@ -37,7 +40,39 @@ public abstract class Piezas {
 	}
 	
 	
-	public abstract void colocarPieza(JPanel lamina);
+	
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
+	public int getFilas() {
+		return filas;
+	}
+
+	public void setFilas(int filas) {
+		this.filas = filas;
+	}
+
+	public int getColumnas() {
+		return columnas;
+	}
+
+	public void setColumnas(int columnas) {
+		this.columnas = columnas;
+	}
+
+
+	
+	public ImageIcon getImagenPieza() {
+		
+		return imagenPieza;
+	}
+	
 	
 
 }

@@ -5,26 +5,17 @@ import javax.swing.*;
 
 public class Alfil extends Piezas {
 
-	public Alfil(String color, int filas, int columnas) {
-		super(color, filas, columnas);
+	public Alfil(String color, int filas, int columnas,ImageIcon imagenPieza) {
+		super(color, filas, columnas,imagenPieza);
 		// TODO Auto-generated constructor stub
 	}
 
 	@Override
-	public boolean esMovimientoValido(int nuevaFila, int nuevaColumna, Tablero tablero) {
+	public boolean esMovimientoValido(int nuevaFila, int nuevaColumna) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
-	public void colocarPieza(JPanel lamina) {
-		// TODO Auto-generated method stub
-		
-		JButton t=new JButton("Alfil"+ color);
-		
-		lamina.add(t);
-		
-		
-	}
+
 
 }
