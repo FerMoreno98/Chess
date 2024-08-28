@@ -141,6 +141,8 @@ class LaminaTablero extends JPanel{
 			
 			if(i%2==0) {
 				
+				letra='a';
+				
 			for (int j = 0; j < 8; j++) {
 				
 				JPanel casilla=new JPanel();
@@ -148,6 +150,97 @@ class LaminaTablero extends JPanel{
 				casilla.setBorder(borde);
 				
 				laminaCasillas.add(casilla);
+				
+				nombreCasilla[i][j]=letra+Integer.toString(8-i);
+				
+				
+				//para colocar los peones blancos en su poscion inicial
+				
+				if(i==6) {
+					
+					Piezas p=new Peon("Blanco",i,j);
+					
+					p.colocarPieza(casilla);
+					
+				}
+				
+				// para colocar las torres negras en su poscion inicial
+				
+				if(i==0 && j==0) {
+					
+					Piezas p=new Torre("Negro",i,j);
+					
+					p.colocarPieza(casilla);
+					
+				}
+				
+				if(i==0 && j==7) {
+					
+					Piezas p=new Torre("Negro",i,j);
+					
+					p.colocarPieza(casilla);
+					
+				}
+				
+				
+				// para colocar las CABALLOS negros en su poscion inicial
+				
+				if(i==0 && j==1) {
+					
+					Piezas p=new Caballo("Negro",i,j);
+					
+					p.colocarPieza(casilla);
+					
+				}
+				
+				if(i==0 && j==6) {
+					
+					Piezas p=new Caballo("Negro",i,j);
+					
+					p.colocarPieza(casilla);
+					
+				}
+				
+				
+	// para colocar las ALFILES negros en su poscion inicial
+				
+				if(i==0 && j==2) {
+					
+					Piezas p=new Alfil("Negro",i,j);
+					
+					p.colocarPieza(casilla);
+					
+				}
+				
+				if(i==0 && j==5) {
+					
+					Piezas p=new Alfil("Negro",i,j);
+					
+					p.colocarPieza(casilla);
+					
+				}
+				
+	// para colocar las DAMA Negro en su poscion inicial
+				
+				if(i==0 && j==3) {
+					
+					Piezas p=new Dama("Negro",i,j);
+					
+					p.colocarPieza(casilla);
+					
+				}
+				
+				// para colocar las REY Negro en su poscion inicial
+				
+				if(i==0 && j==4) {
+					
+					Piezas p=new Rey("Negro",i,j);
+					
+					p.colocarPieza(casilla);
+					
+				}
+				
+				
 				
 				
 				
@@ -161,12 +254,16 @@ class LaminaTablero extends JPanel{
 					
 				}
 				
+				letra++;
+				
 			}
 			
 			
 				}else {
 					
 				//Nos meteremos en el segundo for cuando la fila tenga los blancos impares y los verdes pares
+					
+					letra='a';
 			
 			for (int k = 0; k < 8; k++) {
 				
@@ -175,6 +272,98 @@ class LaminaTablero extends JPanel{
 				casilla.setBorder(borde);
 				
 				laminaCasillas.add(casilla);
+				
+				nombreCasilla[i][k]=letra+Integer.toString(8-i);
+				
+				
+				//Para colocar los peones negros en su posicion inicial
+				
+				if(i==1) {
+					
+					Piezas p=new Peon("Negro",i,k);
+					
+					p.colocarPieza(casilla);
+					
+				}
+				
+				
+		// para colocar las torres blancas en su poscion inicial
+				
+				if(i==7 && k==0) {
+					
+					Piezas p=new Torre("Blanco",i,k);
+					
+					p.colocarPieza(casilla);
+					
+				}
+				
+				if(i==7 && k==7) {
+					
+					Piezas p=new Torre("Blanco",i,k);
+					
+					p.colocarPieza(casilla);
+					
+				}
+				
+				// para colocar las CABALLOS blancos en su poscion inicial
+				
+				if(i==7 && k==6) {
+					
+					Piezas p=new Caballo("Blanco",i,k);
+					
+					p.colocarPieza(casilla);
+					
+				}
+				
+				if(i==7 && k==1) {
+					
+					Piezas p=new Caballo("Blanco",i,k);
+					
+					p.colocarPieza(casilla);
+					
+				}
+				
+	// para colocar las ALFILES blancos en su poscion inicial
+				
+				if(i==7 && k==5) {
+					
+					Piezas p=new Alfil("Blanco",i,k);
+					
+					p.colocarPieza(casilla);
+					
+				}
+				
+				if(i==7 && k==2) {
+					
+					Piezas p=new Alfil("Blanco",i,k);
+					
+					p.colocarPieza(casilla);
+					
+				}
+				
+				
+				// para colocar las DAMA Blanco en su poscion inicial
+				
+				if(i==7 && k==3) {
+					
+					Piezas p=new Dama("Blanco",i,k);
+					
+					p.colocarPieza(casilla);
+					
+				}
+				
+				// para colocar las REY Blanco en su poscion inicial
+				
+				if(i==7 && k==4) {
+					
+					Piezas p=new Rey("Blanco",i,k);
+					
+					p.colocarPieza(casilla);
+					
+				}
+				
+				
+				
 				
 				if(k%2!=0) {
 					
@@ -186,7 +375,10 @@ class LaminaTablero extends JPanel{
 					
 				}
 				
+				letra++;
+				
 			}
+			
 			
 			
 				}
