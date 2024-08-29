@@ -11,18 +11,25 @@ public class Peon extends Piezas {
 
 	@Override
 	public boolean esMovimientoValido(int nuevaFila, int nuevaColumna) {
-		// TODO Auto-generated method stub
-		
-		if(nuevaFila==filas-1 || nuevaFila==filas+2 && nuevaColumna!=columnas) {
-			
-			return false;
-			
-		}else {
-			
-			return true;
-			
-		}
-		
+	    // Verificar si el peón se mueve en la misma columna
+	    if (nuevaColumna != columnas) {
+	        return false;
+	    }
+
+	    // Verificar si el peón se mueve hacia adelante
+	    int diferenciaFila = nuevaFila - filas;
+
+	    // Movimiento hacia adelante (sin capturar)
+	    if (diferenciaFila == -1) {
+	        return true;
+	    }
+
+	    // Movimiento de dos casillas hacia adelante en la primera jugada
+	    if (diferenciaFila == -2 && filas == 6) {
+	        return true;
+	    }
+
+	    return false;
 	}
 
 

@@ -50,11 +50,13 @@ class MarcoTablero extends JFrame{
 
 class LaminaTablero extends JPanel{
 	
-	private JPanel laminaCasillas;
+	private JPanel laminaCasillas,casilla;
 	
 	private String [] [] nombreCasilla;
 	
-	private JButton boton;
+	private JLabel icono;
+	
+	private JPanel [][] casillasConNombre=new JPanel[8][8];
 	
 	public LaminaTablero(){
 		
@@ -147,7 +149,7 @@ class LaminaTablero extends JPanel{
 				
 			for (int j = 0; j < 8; j++) {
 				
-				JPanel casilla=new JPanel();
+				casilla=new JPanel();
 				
 				casilla.setBorder(borde);
 				
@@ -155,6 +157,9 @@ class LaminaTablero extends JPanel{
 				
 				nombreCasilla[i][j]=letra+Integer.toString(8-i);
 				
+				casilla.setName(nombreCasilla[i][j]);
+				
+				casillasConNombre[i][j]=casilla;//asociamos un array de JPanel para que cada casilla tenga una posicion y podamos llamar en el mouse listener a posiciones concretas
 				
 				//para colocar los peones blancos en su poscion inicial
 				
@@ -162,9 +167,18 @@ class LaminaTablero extends JPanel{
 				
 					Piezas p=new Peon("Blanco",i,j,new ImageIcon(getClass().getResource("/images/peonblanco.gif")));
 					
-					JLabel icono=new JLabel(p.getImagenPieza());
+					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
+					
+					icono.putClientProperty("pieza", p); //para asociar la pieza con la casilla
+					
+					if(icono.getClientProperty("pieza")==null) {
+						
+						System.out.println("el putclientproperty no funciona");
+					}
+					
+					icono.addMouseListener(new ControladorMovimiento());
 					
 				}
 				
@@ -174,7 +188,7 @@ class LaminaTablero extends JPanel{
 
 					Piezas p=new Torre("Negro",i,j,new ImageIcon(getClass().getResource("/images/torre.gif")));
 					
-					JLabel icono=new JLabel(p.getImagenPieza());
+					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
 					
@@ -184,7 +198,7 @@ class LaminaTablero extends JPanel{
 
 					Piezas p=new Torre("Negro",i,j,new ImageIcon(getClass().getResource("/images/torre.gif")));
 					
-					JLabel icono=new JLabel(p.getImagenPieza());
+					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
 					
@@ -197,7 +211,7 @@ class LaminaTablero extends JPanel{
 					
 					Piezas p=new Caballo("Negro",i,j,new ImageIcon(getClass().getResource("/images/caballo.gif")));
 					
-					JLabel icono=new JLabel(p.getImagenPieza());
+					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
 					
@@ -207,7 +221,7 @@ class LaminaTablero extends JPanel{
 					
 					Piezas p=new Caballo("Negro",i,j,new ImageIcon(getClass().getResource("/images/caballo.gif")));
 					
-					JLabel icono=new JLabel(p.getImagenPieza());
+					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
 					
@@ -220,7 +234,7 @@ class LaminaTablero extends JPanel{
 					
 					Piezas p=new Alfil("Negro",i,j,new ImageIcon(getClass().getResource("/images/alfil.gif")));
 					
-					JLabel icono=new JLabel(p.getImagenPieza());
+					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
 					
@@ -230,7 +244,7 @@ class LaminaTablero extends JPanel{
 					
 					Piezas p=new Alfil("Negro",i,j,new ImageIcon(getClass().getResource("/images/alfil.gif")));
 					
-					JLabel icono=new JLabel(p.getImagenPieza());
+					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
 					
@@ -243,7 +257,7 @@ class LaminaTablero extends JPanel{
 
 					Piezas p=new Dama("Negro",i,j,new ImageIcon(getClass().getResource("/images/dama.gif")));
 					
-					JLabel icono=new JLabel(p.getImagenPieza());
+					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
 					
@@ -258,7 +272,7 @@ class LaminaTablero extends JPanel{
 					
 					Piezas p=new Rey("Negro",i,j,new ImageIcon(getClass().getResource("/images/rey.gif")));
 					
-					JLabel icono=new JLabel(p.getImagenPieza());
+					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
 					
@@ -292,13 +306,17 @@ class LaminaTablero extends JPanel{
 			
 			for (int k = 0; k < 8; k++) {
 				
-				JPanel casilla=new JPanel();
+				casilla=new JPanel();
 				
 				casilla.setBorder(borde);
 				
 				laminaCasillas.add(casilla);
 				
 				nombreCasilla[i][k]=letra+Integer.toString(8-i);
+				
+				casilla.setName(nombreCasilla[i][k]);
+				
+				casillasConNombre [i][k]=casilla; //asociamos un array de JPanel para que cada casilla tenga una posicion y podamos llamar en el mouse listener a posiciones concretas
 				
 				
 				//Para colocar los peones negros en su posicion inicial
@@ -307,9 +325,16 @@ class LaminaTablero extends JPanel{
 					
 					Piezas p=new Peon("Negro",i,k,new ImageIcon(getClass().getResource("/images/peon.gif")));
 					
-					JLabel icono=new JLabel(p.getImagenPieza());
+					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
+					
+					icono.putClientProperty("pieza", p); //para asociar la pieza con la casilla
+					
+					
+					icono.addMouseListener(new ControladorMovimiento());
+					
+					
 					
 				}
 				
@@ -320,7 +345,7 @@ class LaminaTablero extends JPanel{
 					
 					Piezas p=new Torre("Blanco",i,k,new ImageIcon(getClass().getResource("/images/torreBlanca.gif")));
 					
-					JLabel icono=new JLabel(p.getImagenPieza());
+					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
 					
@@ -330,7 +355,7 @@ class LaminaTablero extends JPanel{
 
 					Piezas p=new Torre("Blanco",i,k,new ImageIcon(getClass().getResource("/images/torreBlanca.gif")));
 					
-					JLabel icono=new JLabel(p.getImagenPieza());
+					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
 					
@@ -343,7 +368,7 @@ class LaminaTablero extends JPanel{
 					
 					Piezas p=new Caballo("Blanco",i,k,new ImageIcon(getClass().getResource("/images/caballoblanco.gif")));
 					
-					JLabel icono=new JLabel(p.getImagenPieza());
+					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
 					
@@ -353,7 +378,7 @@ class LaminaTablero extends JPanel{
 
 					Piezas p=new Caballo("Blanco",i,k,new ImageIcon(getClass().getResource("/images/caballoblanco.gif")));
 					
-					JLabel icono=new JLabel(p.getImagenPieza());
+					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
 					
@@ -365,9 +390,11 @@ class LaminaTablero extends JPanel{
 					
 					Piezas p=new Alfil("Blanco",i,k,new ImageIcon(getClass().getResource("/images/alfilBlanco.gif")));
 					
-					JLabel icono=new JLabel(p.getImagenPieza());
+					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
+					
+				
 					
 				}
 				
@@ -377,7 +404,7 @@ class LaminaTablero extends JPanel{
 					
 					Piezas p=new Alfil("Blanco",i,k,new ImageIcon(getClass().getResource("/images/alfilBlanco.gif")));
 					
-					JLabel icono=new JLabel(p.getImagenPieza());
+					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
 					
@@ -393,7 +420,7 @@ class LaminaTablero extends JPanel{
 					
 					Piezas p=new Dama("Blanco",i,k,new ImageIcon(getClass().getResource("/images/damablanca.gif")));
 					
-					JLabel icono=new JLabel(p.getImagenPieza());
+					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
 					
@@ -409,7 +436,7 @@ class LaminaTablero extends JPanel{
 					
 					Piezas p=new Rey("Blanco",i,k,new ImageIcon(getClass().getResource("/images/reyblanco.gif")));
 					
-					JLabel icono=new JLabel(p.getImagenPieza());
+					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
 				}
@@ -444,37 +471,106 @@ class LaminaTablero extends JPanel{
 		
 	}
 	
-	private class ControladorMovimiento implements ActionListener{
+	private class ControladorMovimiento extends MouseAdapter{
 		
-		
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+		private void restaurarColoresOriginales() {//replicamos la logica hecha para colorear las casillas en este metodo
 			
-			JButton botonPulsado=(JButton)e.getSource();
+			for (int i = 0; i < 8; i++) {
+				
+				
+				
+				if(i%2==0) {
+					
+				
+					
+				for (int j = 0; j < 8; j++) {
+					
+					if(j%2==0) {
+						
+						casillasConNombre[i][j].setBackground(Color.white);
+						
+					}else {
+						
+						casillasConNombre[i][j].setBackground(Color.green);
+						
+					}
+				
+				
+				}
+				
+				
+				
+				}else {
+				
+				for (int k = 0; k < 8; k++) {
+					
+					if(k%2!=0) {
+						
+						casillasConNombre[i][k].setBackground(Color.white);
+						
+					}else {
+						
+						casillasConNombre[i][k].setBackground(Color.green);
+						
+					}
+					
+				}
+				
+				}
+				
 			
-			if(botonPulsado.getText()=="Peon") {
-				
-				
-				
-			}
+			
 			
 		}
-		
-		public void moverPieza(int nuevaFila,int nuevaColumna, Piezas[][] movimiento) {
-			
+				}
 			
 		
 		
+		
+		public void mouseClicked(MouseEvent e) {
+			
+			restaurarColoresOriginales();//lo llamamos aqui para que cada vez que se clique se reinicien los colores
+		
+			
+			 Piezas piezaSelected = (Piezas) ((JLabel) e.getSource()).getClientProperty("pieza");//con getClientProperty nos lleva a la pieza que hay asociada a esa casilla
+		
+			if(piezaSelected==null) {
+				
+				System.out.println("algo falla");
+				
+			}
+				
+				for (int i = 0; i < 8; i++) {
+					
+					for (int j = 0; j < 8; j++) {
+						
+						if(piezaSelected.esMovimientoValido(i, j)) {
+							
+							casillasConNombre[i][j].setBackground(Color.red);
+							
+							System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
+						}
+						
+					}
+					
+				}
+			
+	
+		}
+
+	
+		
+	
+	
+	
+	
+}
 	}
 	
-	
-	
-}
+
 	
 
-}
+
 
 
 
