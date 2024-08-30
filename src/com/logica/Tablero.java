@@ -592,6 +592,8 @@ class LaminaTablero extends JPanel{
 							
 							caballoActivado=true;
 							
+							casillasConNombre[i][j].addMouseListener(new moverPieza());
+							
 						}
 						}
 						
@@ -604,6 +606,8 @@ class LaminaTablero extends JPanel{
 							System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
 							
 							torreActivado=true;
+							
+							casillasConNombre[i][j].addMouseListener(new moverPieza());
 							
 							}
 						}
@@ -618,6 +622,8 @@ class LaminaTablero extends JPanel{
 								System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
 								
 								alfilActivado=true;
+								
+								casillasConNombre[i][j].addMouseListener(new moverPieza());
 							}
 							
 						}
@@ -632,6 +638,8 @@ class LaminaTablero extends JPanel{
 								System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
 								
 								reyActivado=true;
+								
+								casillasConNombre[i][j].addMouseListener(new moverPieza());
 							}
 							
 						}
@@ -645,6 +653,8 @@ class LaminaTablero extends JPanel{
 									System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
 									
 									damaActivado=true;
+									
+									casillasConNombre[i][j].addMouseListener(new moverPieza());
 								}
 								
 							}
@@ -677,7 +687,6 @@ class LaminaTablero extends JPanel{
 
 	            // Remover la imagen del peón de la casilla original
 	            casillasConNombre[peonSelected.getFilas()][peonSelected.getColumnas()].removeAll();
-	            casillasConNombre[peonSelected.getFilas()][peonSelected.getColumnas()].revalidate();
 	            casillasConNombre[peonSelected.getFilas()][peonSelected.getColumnas()].repaint();
 
 	            // Mover la pieza a la nueva posición (actualizar sus coordenadas internas)
@@ -688,9 +697,10 @@ class LaminaTablero extends JPanel{
 	            casillaSelected.add(nuevoIcono);
 	            casillaSelected.revalidate();
 	            casillaSelected.repaint();
-
-	            // Actualizar la propiedad del peón en la nueva casilla
-	            casillaSelected.putClientProperty("peon", peonSelected);
+	            
+	            //añadimos el clientProperty al "nuevo" JLabel para poder añadirle de nuevo el primer mouselistener para que se pueda mover de nuevo
+	            nuevoIcono.putClientProperty("peon", peonSelected);
+	            nuevoIcono.addMouseListener(new ControladorMovimiento());
 
 	            // Desactivar el estado de peón activado
 	            peonActivado = false;
@@ -700,8 +710,177 @@ class LaminaTablero extends JPanel{
 	            // Restaurar los colores originales de las casillas
 	            restaurarColoresOriginales();
 	        }
+	        
+	        //----------------------------------------------------------------------------Movimiento del caballo
+	        
+	        if (caballoActivado && caballoSelected != null) {
+	            // Obtener la nueva fila y columna de la casilla seleccionada
+	            int nuevaFila = (int) casillaSelected.getClientProperty("fila");
+	            int nuevaColumna = (int) casillaSelected.getClientProperty("columna");
+
+	            // Remover la imagen del peón de la casilla original
+	            casillasConNombre[caballoSelected.getFilas()][caballoSelected.getColumnas()].removeAll();
+	            casillasConNombre[caballoSelected.getFilas()][caballoSelected.getColumnas()].repaint();
+
+	            // Mover la pieza a la nueva posición (actualizar sus coordenadas internas)
+	            caballoSelected.mover(nuevaFila, nuevaColumna);
+
+	            // Añadir la imagen del peón a la nueva casilla
+	            JLabel nuevoIcono = new JLabel(caballoSelected.getImagenPieza());
+	            casillaSelected.add(nuevoIcono);
+	            casillaSelected.revalidate();
+	            casillaSelected.repaint();
+	            
+	            //añadimos el clientProperty al "nuevo" JLabel para poder añadirle de nuevo el primer mouselistener para que se pueda mover de nuevo
+	            nuevoIcono.putClientProperty("caballo", caballoSelected);
+	            nuevoIcono.addMouseListener(new ControladorMovimiento());
+
+	            // Desactivar el estado de peón activado
+	            caballoActivado = false;
+
+	            System.out.println("Caballo movido a la fila " + nuevaFila + " y columna " + nuevaColumna);
+
+	            // Restaurar los colores originales de las casillas
+	            restaurarColoresOriginales();
+	        }
+	        
+	        //---------------------------------------------------Movimiento de la torre
+	        
+	        if (torreActivado && torreSelected != null) {
+	            // Obtener la nueva fila y columna de la casilla seleccionada
+	            int nuevaFila = (int) casillaSelected.getClientProperty("fila");
+	            int nuevaColumna = (int) casillaSelected.getClientProperty("columna");
+
+	            // Remover la imagen del peón de la casilla original
+	            casillasConNombre[torreSelected.getFilas()][torreSelected.getColumnas()].removeAll();
+	            casillasConNombre[torreSelected.getFilas()][torreSelected.getColumnas()].repaint();
+
+	            // Mover la pieza a la nueva posición (actualizar sus coordenadas internas)
+	            torreSelected.mover(nuevaFila, nuevaColumna);
+
+	            // Añadir la imagen del peón a la nueva casilla
+	            JLabel nuevoIcono = new JLabel(torreSelected.getImagenPieza());
+	            casillaSelected.add(nuevoIcono);
+	            casillaSelected.revalidate();
+	            casillaSelected.repaint();
+	            
+	            //añadimos el clientProperty al "nuevo" JLabel para poder añadirle de nuevo el primer mouselistener para que se pueda mover de nuevo
+	            nuevoIcono.putClientProperty("caballo", torreSelected);
+	            nuevoIcono.addMouseListener(new ControladorMovimiento());
+
+	            // Desactivar el estado de peón activado
+	            torreActivado = false;
+
+	            System.out.println("torre movido a la fila " + nuevaFila + " y columna " + nuevaColumna);
+
+	            // Restaurar los colores originales de las casillas
+	            restaurarColoresOriginales();
+	        }
+	        
+	        //---------------------------------------------------------------Movimiento del alfil
+	        
+	        if (alfilActivado && alfilSelected != null) {
+	            // Obtener la nueva fila y columna de la casilla seleccionada
+	            int nuevaFila = (int) casillaSelected.getClientProperty("fila");
+	            int nuevaColumna = (int) casillaSelected.getClientProperty("columna");
+
+	            // Remover la imagen del peón de la casilla original
+	            casillasConNombre[alfilSelected.getFilas()][alfilSelected.getColumnas()].removeAll();
+	            casillasConNombre[alfilSelected.getFilas()][alfilSelected.getColumnas()].repaint();
+
+	            // Mover la pieza a la nueva posición (actualizar sus coordenadas internas)
+	            alfilSelected.mover(nuevaFila, nuevaColumna);
+
+	            // Añadir la imagen del peón a la nueva casilla
+	            JLabel nuevoIcono = new JLabel(alfilSelected.getImagenPieza());
+	            casillaSelected.add(nuevoIcono);
+	            casillaSelected.revalidate();
+	            casillaSelected.repaint();
+	            
+	            //añadimos el clientProperty al "nuevo" JLabel para poder añadirle de nuevo el primer mouselistener para que se pueda mover de nuevo
+	            nuevoIcono.putClientProperty("caballo", alfilSelected);
+	            nuevoIcono.addMouseListener(new ControladorMovimiento());
+
+	            // Desactivar el estado de peón activado
+	            alfilActivado = false;
+
+	            System.out.println("alfil movido a la fila " + nuevaFila + " y columna " + nuevaColumna);
+
+	            // Restaurar los colores originales de las casillas
+	            restaurarColoresOriginales();
+	        }
+	        
+	        
+       //---------------------------------------------------------------Movimiento de la dama
+	        
+	        if (damaActivado && damaSelected != null) {
+	            // Obtener la nueva fila y columna de la casilla seleccionada
+	            int nuevaFila = (int) casillaSelected.getClientProperty("fila");
+	            int nuevaColumna = (int) casillaSelected.getClientProperty("columna");
+
+	            // Remover la imagen del peón de la casilla original
+	            casillasConNombre[damaSelected.getFilas()][damaSelected.getColumnas()].removeAll();
+	            casillasConNombre[damaSelected.getFilas()][damaSelected.getColumnas()].repaint();
+
+	            // Mover la pieza a la nueva posición (actualizar sus coordenadas internas)
+	            damaSelected.mover(nuevaFila, nuevaColumna);
+
+	            // Añadir la imagen del peón a la nueva casilla
+	            JLabel nuevoIcono = new JLabel(damaSelected.getImagenPieza());
+	            casillaSelected.add(nuevoIcono);
+	            casillaSelected.revalidate();
+	            casillaSelected.repaint();
+	            
+	            //añadimos el clientProperty al "nuevo" JLabel para poder añadirle de nuevo el primer mouselistener para que se pueda mover de nuevo
+	            nuevoIcono.putClientProperty("caballo", damaSelected);
+	            nuevoIcono.addMouseListener(new ControladorMovimiento());
+
+	            // Desactivar el estado de peón activado
+	            damaActivado = false;
+
+	            System.out.println("dama movido a la fila " + nuevaFila + " y columna " + nuevaColumna);
+
+	            // Restaurar los colores originales de las casillas
+	            restaurarColoresOriginales();
+	        }
+	        
+    //---------------------------------------------------------------Movimiento de la rey
+	        
+	        if (reyActivado && reySelected != null) {
+	            // Obtener la nueva fila y columna de la casilla seleccionada
+	            int nuevaFila = (int) casillaSelected.getClientProperty("fila");
+	            int nuevaColumna = (int) casillaSelected.getClientProperty("columna");
+
+	            // Remover la imagen del peón de la casilla original
+	            casillasConNombre[reySelected.getFilas()][reySelected.getColumnas()].removeAll();
+	            casillasConNombre[reySelected.getFilas()][reySelected.getColumnas()].repaint();
+
+	            // Mover la pieza a la nueva posición (actualizar sus coordenadas internas)
+	            reySelected.mover(nuevaFila, nuevaColumna);
+
+	            // Añadir la imagen del peón a la nueva casilla
+	            JLabel nuevoIcono = new JLabel(reySelected.getImagenPieza());
+	            casillaSelected.add(nuevoIcono);
+	            casillaSelected.revalidate();
+	            casillaSelected.repaint();
+	            
+	            // añadimos el clientProperty al "nuevo" JLabel para poder añadirle de nuevo el primer mouselistener para que se pueda mover de nuevo
+	            nuevoIcono.putClientProperty("caballo", reySelected);
+	            nuevoIcono.addMouseListener(new ControladorMovimiento());
+
+	            // Desactivar el estado de peón activado
+	            reyActivado = false;
+
+	            System.out.println("rey movido a la fila " + nuevaFila + " y columna " + nuevaColumna);
+
+	            // Restaurar los colores originales de las casillas
+	            restaurarColoresOriginales();
+	        }
+	        
+	        
 	    }
 	}
+	
 	
 	public void restaurarColoresOriginales() {//replicamos la logica hecha para colorear las casillas en este metodo
 		
