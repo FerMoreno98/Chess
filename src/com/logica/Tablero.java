@@ -58,6 +58,10 @@ class LaminaTablero extends JPanel{
 	
 	private JPanel [][] casillasConNombre=new JPanel[8][8];
 	
+	private boolean peonActivado=false,caballoActivado=false,torreActivado=false,alfilActivado=false,damaActivado=false,reyActivado=false;
+	
+	private Piezas peonSelected, alfilSelected,torreSelected,caballoSelected,damaSelected,reySelected;
+	
 	public LaminaTablero(){
 		
 		setLayout(new BorderLayout());
@@ -153,11 +157,15 @@ class LaminaTablero extends JPanel{
 				
 				casilla.setBorder(borde);
 				
+				casilla.putClientProperty("fila",i);
+				
+				casilla.putClientProperty("columna", j);
+				
 				laminaCasillas.add(casilla);
 				
 				nombreCasilla[i][j]=letra+Integer.toString(8-i);
 				
-				casilla.setName(nombreCasilla[i][j]);
+				//casilla.setName(nombreCasilla[i][j]);
 				
 				casillasConNombre[i][j]=casilla;//asociamos un array de JPanel para que cada casilla tenga una posicion y podamos llamar en el mouse listener a posiciones concretas
 				
@@ -339,11 +347,15 @@ class LaminaTablero extends JPanel{
 				
 				casilla.setBorder(borde);
 				
+				casilla.putClientProperty("fila",i);
+				
+				casilla.putClientProperty("columna", k);
+				
 				laminaCasillas.add(casilla);
 				
 				nombreCasilla[i][k]=letra+Integer.toString(8-i);
 				
-				casilla.setName(nombreCasilla[i][k]);
+				//casilla.setName(nombreCasilla[i][k]);
 				
 				casillasConNombre [i][k]=casilla; //asociamos un array de JPanel para que cada casilla tenga una posicion y podamos llamar en el mouse listener a posiciones concretas
 				
@@ -359,7 +371,6 @@ class LaminaTablero extends JPanel{
 					casilla.add(icono);
 					
 					icono.putClientProperty("peon", p); //para asociar la pieza con la casilla
-					
 					
 					icono.addMouseListener(new ControladorMovimiento());
 					
@@ -535,56 +546,7 @@ class LaminaTablero extends JPanel{
 	
 	private class ControladorMovimiento extends MouseAdapter{
 		
-		private void restaurarColoresOriginales() {//replicamos la logica hecha para colorear las casillas en este metodo
-			
-			for (int i = 0; i < 8; i++) {
-				
-				
-				
-				if(i%2==0) {
-					
-				
-					
-				for (int j = 0; j < 8; j++) {
-					
-					if(j%2==0) {
-						
-						casillasConNombre[i][j].setBackground(Color.white);
-						
-					}else {
-						
-						casillasConNombre[i][j].setBackground(Color.green);
-						
-					}
-				
-				
-				}
-				
-				
-				
-				}else {
-				
-				for (int k = 0; k < 8; k++) {
-					
-					if(k%2!=0) {
-						
-						casillasConNombre[i][k].setBackground(Color.white);
-						
-					}else {
-						
-						casillasConNombre[i][k].setBackground(Color.green);
-						
-					}
-					
-				}
-				
-				}
-				
-			
-			
-			
-		}
-				}
+
 			
 		
 		
@@ -592,12 +554,12 @@ class LaminaTablero extends JPanel{
 		public void mouseClicked(MouseEvent e) {
 			
 			restaurarColoresOriginales();//lo llamamos aqui para que cada vez que se clique se reinicien los colores
-			 Piezas alfilSelected=(Piezas)((JLabel)e.getSource()).getClientProperty("alfil");
-			 Piezas torreSelected=(Piezas)((JLabel)e.getSource()).getClientProperty("torre");
-			 Piezas caballoSelected=(Piezas) ((JLabel)e.getSource()).getClientProperty("caballo");
-			 Piezas peonSelected = (Piezas) ((JLabel) e.getSource()).getClientProperty("peon");//con getClientProperty nos lleva a la pieza que hay asociada a esa casilla
-			 Piezas reySelected=(Piezas)((JLabel)e.getSource()).getClientProperty("rey");
-			 Piezas damaSelected=(Piezas)((JLabel)e.getSource()).getClientProperty("dama");
+			 alfilSelected=(Piezas)((JLabel)e.getSource()).getClientProperty("alfil");
+			 torreSelected=(Piezas)((JLabel)e.getSource()).getClientProperty("torre");
+			 caballoSelected=(Piezas) ((JLabel)e.getSource()).getClientProperty("caballo");
+			 peonSelected = (Piezas) ((JLabel) e.getSource()).getClientProperty("peon");//con getClientProperty nos lleva a la pieza que hay asociada a esa casilla
+			 reySelected=(Piezas)((JLabel)e.getSource()).getClientProperty("rey");
+			 damaSelected=(Piezas)((JLabel)e.getSource()).getClientProperty("dama");
 				
 				for (int i = 0; i < 8; i++) {
 					
@@ -610,6 +572,10 @@ class LaminaTablero extends JPanel{
 							casillasConNombre[i][j].setBackground(Color.red);
 							
 							System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
+							
+							peonActivado=true;
+							
+							casillasConNombre[i][j].addMouseListener(new moverPieza());
 						}
 						
 						
@@ -624,6 +590,8 @@ class LaminaTablero extends JPanel{
 							
 							System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
 							
+							caballoActivado=true;
+							
 						}
 						}
 						
@@ -634,6 +602,8 @@ class LaminaTablero extends JPanel{
 							casillasConNombre[i][j].setBackground(Color.red);
 							
 							System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
+							
+							torreActivado=true;
 							
 							}
 						}
@@ -646,6 +616,8 @@ class LaminaTablero extends JPanel{
 								casillasConNombre[i][j].setBackground(Color.red);
 								
 								System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
+								
+								alfilActivado=true;
 							}
 							
 						}
@@ -658,6 +630,8 @@ class LaminaTablero extends JPanel{
 								casillasConNombre[i][j].setBackground(Color.red);
 								
 								System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
+								
+								reyActivado=true;
 							}
 							
 						}
@@ -669,6 +643,8 @@ class LaminaTablero extends JPanel{
 									casillasConNombre[i][j].setBackground(Color.red);
 									
 									System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
+									
+									damaActivado=true;
 								}
 								
 							}
@@ -687,6 +663,97 @@ class LaminaTablero extends JPanel{
 	
 	
 }
+	
+	private class moverPieza extends MouseAdapter {
+
+	    @Override
+	    public void mouseClicked(MouseEvent e) {
+	        JPanel casillaSelected = (JPanel) e.getSource();
+
+	        if (peonActivado && peonSelected != null) {
+	            // Obtener la nueva fila y columna de la casilla seleccionada
+	            int nuevaFila = (int) casillaSelected.getClientProperty("fila");
+	            int nuevaColumna = (int) casillaSelected.getClientProperty("columna");
+
+	            // Remover la imagen del peón de la casilla original
+	            casillasConNombre[peonSelected.getFilas()][peonSelected.getColumnas()].removeAll();
+	            casillasConNombre[peonSelected.getFilas()][peonSelected.getColumnas()].revalidate();
+	            casillasConNombre[peonSelected.getFilas()][peonSelected.getColumnas()].repaint();
+
+	            // Mover la pieza a la nueva posición (actualizar sus coordenadas internas)
+	            peonSelected.mover(nuevaFila, nuevaColumna);
+
+	            // Añadir la imagen del peón a la nueva casilla
+	            JLabel nuevoIcono = new JLabel(peonSelected.getImagenPieza());
+	            casillaSelected.add(nuevoIcono);
+	            casillaSelected.revalidate();
+	            casillaSelected.repaint();
+
+	            // Actualizar la propiedad del peón en la nueva casilla
+	            casillaSelected.putClientProperty("peon", peonSelected);
+
+	            // Desactivar el estado de peón activado
+	            peonActivado = false;
+
+	            System.out.println("Peón movido a la fila " + nuevaFila + " y columna " + nuevaColumna);
+
+	            // Restaurar los colores originales de las casillas
+	            restaurarColoresOriginales();
+	        }
+	    }
+	}
+	
+	public void restaurarColoresOriginales() {//replicamos la logica hecha para colorear las casillas en este metodo
+		
+		for (int i = 0; i < 8; i++) {
+			
+			
+			
+			if(i%2==0) {
+				
+			
+				
+			for (int j = 0; j < 8; j++) {
+				
+				if(j%2==0) {
+					
+					casillasConNombre[i][j].setBackground(Color.white);
+					
+				}else {
+					
+					casillasConNombre[i][j].setBackground(Color.green);
+					
+				}
+			
+			
+			}
+			
+			
+			
+			}else {
+			
+			for (int k = 0; k < 8; k++) {
+				
+				if(k%2!=0) {
+					
+					casillasConNombre[i][k].setBackground(Color.white);
+					
+				}else {
+					
+					casillasConNombre[i][k].setBackground(Color.green);
+					
+				}
+				
+			}
+			
+			}
+			
+		
+		
+		
+	}
+			}
+	
 	}
 	
 
