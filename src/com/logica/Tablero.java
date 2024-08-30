@@ -171,12 +171,7 @@ class LaminaTablero extends JPanel{
 					
 					casilla.add(icono);
 					
-					icono.putClientProperty("pieza", p); //para asociar la pieza con la casilla
-					
-					if(icono.getClientProperty("pieza")==null) {
-						
-						System.out.println("el putclientproperty no funciona");
-					}
+					icono.putClientProperty("peon", p); //para asociar la pieza con la casilla
 					
 					icono.addMouseListener(new ControladorMovimiento());
 					
@@ -192,6 +187,10 @@ class LaminaTablero extends JPanel{
 					
 					casilla.add(icono);
 					
+					icono.putClientProperty("torre", p);
+					
+					icono.addMouseListener(new ControladorMovimiento());
+					
 				}
 				
 				if(i==0 && j==7) {
@@ -201,6 +200,10 @@ class LaminaTablero extends JPanel{
 					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
+					
+					icono.putClientProperty("torre", p);
+					
+					icono.addMouseListener(new ControladorMovimiento());
 					
 				}
 				
@@ -215,6 +218,10 @@ class LaminaTablero extends JPanel{
 					
 					casilla.add(icono);
 					
+					icono.putClientProperty("caballo", p);
+					
+					icono.addMouseListener(new ControladorMovimiento());
+					
 				}
 				
 				if(i==0 && j==6) {
@@ -224,6 +231,10 @@ class LaminaTablero extends JPanel{
 					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
+					
+					icono.putClientProperty("caballo", p);
+					
+					icono.addMouseListener(new ControladorMovimiento());
 					
 				}
 				
@@ -238,6 +249,11 @@ class LaminaTablero extends JPanel{
 					
 					casilla.add(icono);
 					
+					icono.putClientProperty("alfil", p);
+					
+					icono.addMouseListener(new ControladorMovimiento());
+					
+					
 				}
 				
 				if(i==0 && j==5) {
@@ -247,6 +263,11 @@ class LaminaTablero extends JPanel{
 					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
+					
+					icono.putClientProperty("alfil", p);
+					
+					icono.addMouseListener(new ControladorMovimiento());
+					
 					
 					
 				}
@@ -260,6 +281,10 @@ class LaminaTablero extends JPanel{
 					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
+					
+					icono.putClientProperty("dama", p);
+					
+					icono.addMouseListener(new ControladorMovimiento());
 					
 					
 				}
@@ -275,6 +300,10 @@ class LaminaTablero extends JPanel{
 					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
+					
+					icono.putClientProperty("rey", p);
+					
+					icono.addMouseListener(new ControladorMovimiento());
 					
 					
 				}
@@ -329,7 +358,7 @@ class LaminaTablero extends JPanel{
 					
 					casilla.add(icono);
 					
-					icono.putClientProperty("pieza", p); //para asociar la pieza con la casilla
+					icono.putClientProperty("peon", p); //para asociar la pieza con la casilla
 					
 					
 					icono.addMouseListener(new ControladorMovimiento());
@@ -349,6 +378,10 @@ class LaminaTablero extends JPanel{
 					
 					casilla.add(icono);
 					
+					icono.putClientProperty("torre", p);
+					
+					icono.addMouseListener(new ControladorMovimiento());
+					
 				}
 				
 				if(i==7 && k==7) {
@@ -358,6 +391,10 @@ class LaminaTablero extends JPanel{
 					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
+					
+					icono.putClientProperty("torre", p);
+					
+					icono.addMouseListener(new ControladorMovimiento());
 					
 				}
 				
@@ -372,6 +409,10 @@ class LaminaTablero extends JPanel{
 					
 					casilla.add(icono);
 					
+					icono.putClientProperty("caballo", p);
+					
+					icono.addMouseListener(new ControladorMovimiento());
+					
 				}
 				
 				if(i==7 && k==1) {
@@ -381,6 +422,10 @@ class LaminaTablero extends JPanel{
 					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
+					
+					icono.putClientProperty("caballo", p);
+					
+					icono.addMouseListener(new ControladorMovimiento());
 					
 				}
 				
@@ -393,6 +438,10 @@ class LaminaTablero extends JPanel{
 					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
+					
+					icono.putClientProperty("alfil", p);
+					
+					icono.addMouseListener(new ControladorMovimiento());
 					
 				
 					
@@ -407,6 +456,11 @@ class LaminaTablero extends JPanel{
 					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
+					
+					icono.putClientProperty("alfil", p);
+					
+					icono.addMouseListener(new ControladorMovimiento());
+					
 					
 					
 				}
@@ -424,6 +478,10 @@ class LaminaTablero extends JPanel{
 					
 					casilla.add(icono);
 					
+					icono.putClientProperty("dama", p);
+					
+					icono.addMouseListener(new ControladorMovimiento());
+					
 		
 					
 				}
@@ -439,6 +497,10 @@ class LaminaTablero extends JPanel{
 					icono=new JLabel(p.getImagenPieza());
 					
 					casilla.add(icono);
+					
+					icono.putClientProperty("rey", p);
+					
+					icono.addMouseListener(new ControladorMovimiento());
 				}
 				
 				
@@ -530,26 +592,86 @@ class LaminaTablero extends JPanel{
 		public void mouseClicked(MouseEvent e) {
 			
 			restaurarColoresOriginales();//lo llamamos aqui para que cada vez que se clique se reinicien los colores
-		
-			
-			 Piezas piezaSelected = (Piezas) ((JLabel) e.getSource()).getClientProperty("pieza");//con getClientProperty nos lleva a la pieza que hay asociada a esa casilla
-		
-			if(piezaSelected==null) {
-				
-				System.out.println("algo falla");
-				
-			}
+			 Piezas alfilSelected=(Piezas)((JLabel)e.getSource()).getClientProperty("alfil");
+			 Piezas torreSelected=(Piezas)((JLabel)e.getSource()).getClientProperty("torre");
+			 Piezas caballoSelected=(Piezas) ((JLabel)e.getSource()).getClientProperty("caballo");
+			 Piezas peonSelected = (Piezas) ((JLabel) e.getSource()).getClientProperty("peon");//con getClientProperty nos lleva a la pieza que hay asociada a esa casilla
+			 Piezas reySelected=(Piezas)((JLabel)e.getSource()).getClientProperty("rey");
+			 Piezas damaSelected=(Piezas)((JLabel)e.getSource()).getClientProperty("dama");
 				
 				for (int i = 0; i < 8; i++) {
 					
 					for (int j = 0; j < 8; j++) {
 						
-						if(piezaSelected.esMovimientoValido(i, j)) {
+						if(peonSelected!=null) {
+						
+						if(peonSelected.esMovimientoValido(i, j)) {
 							
 							casillasConNombre[i][j].setBackground(Color.red);
 							
 							System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
 						}
+						
+						
+						}
+						
+						
+						
+						if(caballoSelected!=null) {
+						if(caballoSelected.esMovimientoValido(i, j)) {
+							
+							casillasConNombre[i][j].setBackground(Color.red);
+							
+							System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
+							
+						}
+						}
+						
+						if(torreSelected!=null) {
+							
+							if(torreSelected.esMovimientoValido(i, j)) {
+							
+							casillasConNombre[i][j].setBackground(Color.red);
+							
+							System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
+							
+							}
+						}
+						
+						
+						if(alfilSelected!=null) {
+							
+							if(alfilSelected.esMovimientoValido(i, j)) {
+								
+								casillasConNombre[i][j].setBackground(Color.red);
+								
+								System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
+							}
+							
+						}
+						
+						
+						 if(reySelected!=null) {
+							
+							if(reySelected.esMovimientoValido(i, j)) {
+								
+								casillasConNombre[i][j].setBackground(Color.red);
+								
+								System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
+							}
+							
+						}
+						 
+						 if(damaSelected!=null) {
+								
+								if(damaSelected.esMovimientoValido(i, j)) {
+									
+									casillasConNombre[i][j].setBackground(Color.red);
+									
+									System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
+								}
+								
+							}
 						
 					}
 					

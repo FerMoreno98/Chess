@@ -14,7 +14,57 @@ public class Rey extends Piezas{
 	@Override
 	public boolean esMovimientoValido(int nuevaFila, int nuevaColumna) {
 		// TODO Auto-generated method stub
-		return Math.abs(filas - columnas) <=1 && Math.abs(nuevaFila - nuevaColumna) <=1;
+		
+		
+		if(nuevaFila==filas+1 && nuevaColumna==columnas+1) {
+			return true;
+			
+		}
+		
+		if(nuevaFila==filas-1 && nuevaColumna==columnas-1) {
+			return true;
+			
+		}
+		
+		
+		
+		if(nuevaFila==filas+1 && nuevaColumna==columnas-1) {
+			return true;
+			
+		}
+		
+		if(nuevaFila==filas-1 && nuevaColumna==columnas+1) {
+			return true;
+			
+		}
+		
+		
+		
+		if(nuevaFila==filas && nuevaColumna==columnas+1) {
+			
+			return true;
+		}
+		
+		if(nuevaFila==filas && nuevaColumna==columnas-1) {
+			
+			return true;
+		}
+		
+		
+		
+		
+		if(nuevaFila==filas+1 && nuevaColumna==columnas) {
+			
+			return true;
+		}
+		
+		if(nuevaFila==filas-1 && nuevaColumna==columnas) {
+			
+			return true;
+		}
+		
+		
+		return false;
 	
 	}
 

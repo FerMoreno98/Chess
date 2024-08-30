@@ -15,6 +15,53 @@ public class Caballo extends Piezas {
 	@Override
 	public boolean esMovimientoValido(int nuevaFila, int nuevaColumna) {
 		// TODO Auto-generated method stub
+		
+		if(nuevaFila==filas+2 && nuevaColumna==columnas+1) {
+			
+			return true;
+		}
+		
+		if(nuevaFila==filas+2 && nuevaColumna==columnas-1) {
+			
+			return true;
+		}
+		
+		if(nuevaFila==filas+1 && nuevaColumna==columnas-2) {
+			
+			return true;
+			
+		}
+		
+		if(nuevaFila==filas+1 && nuevaColumna==columnas+2) {
+			
+			return true;
+			
+		}
+		
+		
+		
+		if(nuevaFila==filas-2 && nuevaColumna==columnas-1) {
+			
+			return true;
+		}
+		
+		if(nuevaFila==filas-2 && nuevaColumna==columnas+1) {
+			
+			return true;
+		}
+		
+		if(nuevaFila==filas-1 && nuevaColumna==columnas+2) {
+			
+			return true;
+			
+		}
+		
+		if(nuevaFila==filas-1 && nuevaColumna==columnas-2) {
+			
+			return true;
+			
+		}
+		
 		return false;
 	}
 

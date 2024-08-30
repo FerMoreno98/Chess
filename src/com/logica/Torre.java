@@ -13,6 +13,16 @@ public class Torre extends Piezas {
 	@Override
 	public boolean esMovimientoValido(int nuevaFila, int nuevaColumna) {
 		// TODO Auto-generated method stub
+		
+		if(nuevaColumna==columnas) {
+			return true;
+		}
+		
+		if(nuevaFila==filas) {
+			
+			return true;
+		}
+	
 		return false;
 	}
 
