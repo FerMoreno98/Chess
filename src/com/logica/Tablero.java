@@ -189,7 +189,7 @@ class LaminaTablero extends JPanel{
 				
 				if(i==0 && j==0) {
 
-					Piezas p=new Torre("Negro",i,j,new ImageIcon(getClass().getResource("/images/torre.gif")));
+					Piezas p=new Torre("Negro",i,j,new ImageIcon(getClass().getResource("/images/torre.gif")),casillasConNombre[i][j]);
 					
 					icono=new JLabel(p.getImagenPieza());
 					
@@ -203,7 +203,7 @@ class LaminaTablero extends JPanel{
 				
 				if(i==0 && j==7) {
 
-					Piezas p=new Torre("Negro",i,j,new ImageIcon(getClass().getResource("/images/torre.gif")));
+					Piezas p=new Torre("Negro",i,j,new ImageIcon(getClass().getResource("/images/torre.gif")),casillasConNombre[i][j]);
 					
 					icono=new JLabel(p.getImagenPieza());
 					
@@ -383,7 +383,7 @@ class LaminaTablero extends JPanel{
 				
 				if(i==7 && k==0) {
 					
-					Piezas p=new Torre("Blanco",i,k,new ImageIcon(getClass().getResource("/images/torreBlanca.gif")));
+					Piezas p=new Torre("Blanco",i,k,new ImageIcon(getClass().getResource("/images/torreBlanca.gif")),casillasConNombre[i][k]);
 					
 					icono=new JLabel(p.getImagenPieza());
 					
@@ -397,7 +397,7 @@ class LaminaTablero extends JPanel{
 				
 				if(i==7 && k==7) {
 
-					Piezas p=new Torre("Blanco",i,k,new ImageIcon(getClass().getResource("/images/torreBlanca.gif")));
+					Piezas p=new Torre("Blanco",i,k,new ImageIcon(getClass().getResource("/images/torreBlanca.gif")),casillasConNombre[i][k]);
 					
 					icono=new JLabel(p.getImagenPieza());
 					
@@ -599,6 +599,8 @@ class LaminaTablero extends JPanel{
 						
 						if(torreSelected!=null) {
 							
+							torreSelected.setCasilla(casillasConNombre[i][j]);
+							
 							if(torreSelected.esMovimientoValido(i, j)) {
 							
 							casillasConNombre[i][j].setBackground(Color.red);
@@ -662,6 +664,8 @@ class LaminaTablero extends JPanel{
 					}
 					
 				}
+				
+				
 			
 	
 		}
@@ -691,7 +695,7 @@ class LaminaTablero extends JPanel{
 
 	            // Mover la pieza a la nueva posición (actualizar sus coordenadas internas)
 	            peonSelected.mover(nuevaFila, nuevaColumna);
-
+	            
 	            // Añadir la imagen del peón a la nueva casilla
 	            JLabel nuevoIcono = new JLabel(peonSelected.getImagenPieza());
 	            casillaSelected.add(nuevoIcono);
@@ -756,8 +760,9 @@ class LaminaTablero extends JPanel{
 	            casillasConNombre[torreSelected.getFilas()][torreSelected.getColumnas()].repaint();
 
 	            // Mover la pieza a la nueva posición (actualizar sus coordenadas internas)
-	            torreSelected.mover(nuevaFila, nuevaColumna);
-
+	            torreSelected.mover(nuevaFila, nuevaColumna,casillaSelected);
+	            
+	            
 	            // Añadir la imagen del peón a la nueva casilla
 	            JLabel nuevoIcono = new JLabel(torreSelected.getImagenPieza());
 	            casillaSelected.add(nuevoIcono);
@@ -765,7 +770,7 @@ class LaminaTablero extends JPanel{
 	            casillaSelected.repaint();
 	            
 	            //añadimos el clientProperty al "nuevo" JLabel para poder añadirle de nuevo el primer mouselistener para que se pueda mover de nuevo
-	            nuevoIcono.putClientProperty("caballo", torreSelected);
+	            nuevoIcono.putClientProperty("torre", torreSelected);
 	            nuevoIcono.addMouseListener(new ControladorMovimiento());
 
 	            // Desactivar el estado de peón activado
