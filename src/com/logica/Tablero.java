@@ -560,8 +560,230 @@ class LaminaTablero extends JPanel{
 			 peonSelected = (Piezas) ((JLabel) e.getSource()).getClientProperty("peon");//con getClientProperty nos lleva a la pieza que hay asociada a esa casilla
 			 reySelected=(Piezas)((JLabel)e.getSource()).getClientProperty("rey");
 			 damaSelected=(Piezas)((JLabel)e.getSource()).getClientProperty("dama");
+			 
+			 
+			 if(peonSelected!=null) {
+				 
+				 if(peonSelected.getColor().equals("Negro")) {
+				 for (int i = peonSelected.getFilas(); i < 8; i++) {
+					 
+					for (int j = peonSelected.getColumnas(); j < 8; j++) {
+						
+						peonSelected.setCasilla(casillasConNombre[i][j]);
+						
+						if(peonSelected.esMovimientoValido(i, j)) {
+							
+							casillasConNombre[i][j].setBackground(Color.red);
+							
+							System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
+							
+							peonActivado=true;
+							
+							casillasConNombre[i][j].addMouseListener(new moverPieza());
+							
+						}
+						}
+						
+					}
+				}else if(peonSelected.getColor().equals("Blanco")) {
+					 for (int i = peonSelected.getFilas(); i > 0; i--) {
+						 
+							for (int j = peonSelected.getColumnas(); j < 8; j++) {
+								
+								peonSelected.setCasilla(casillasConNombre[i][j]);
+								
+								if(peonSelected.esMovimientoValido(i, j)) {
+									
+									casillasConNombre[i][j].setBackground(Color.red);
+									
+									System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
+									
+									peonActivado=true;
+									
+									casillasConNombre[i][j].addMouseListener(new moverPieza());
+									
+								}
+								}
+								
+							}
+					
+					
+				}
+				 }
+			 
+			 
+	 if(caballoSelected!=null) {
+				 
+				 for (int i = 0; i < 8; i++) {
+					 
+					for (int j = 0; j < 8; j++) {
+						
+						caballoSelected.setCasilla(casillasConNombre[i][j]);
+						
+						if(caballoSelected.esMovimientoValido(i, j)) {
+							
+							casillasConNombre[i][j].setBackground(Color.red);
+							
+							System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
+							
+							caballoActivado=true;
+							
+							casillasConNombre[i][j].addMouseListener(new moverPieza());
+							
+						}
+						
+					}
+				}
+				 }
+			 
+			 
+			 if(torreSelected!=null) {
+				 
+				 torreActivado=true;
+				 
+			int filaActual=torreSelected.getFilas();
+			
+			int columnaActual=torreSelected.getColumnas();
+			
+			// columna hacia adelante
+			
+			for (int i = filaActual; i < 8; i++) {
 				
-				for (int i = 0; i < 8; i++) {
+				torreSelected.setCasilla(casillasConNombre[i][columnaActual]);
+				
+				if(torreSelected.esMovimientoValido(i, columnaActual)) {
+
+				casillasConNombre[i][columnaActual].setBackground(Color.red);
+				
+				casillasConNombre[i][columnaActual].addMouseListener(new moverPieza());
+				}
+			}
+			
+			//columna hacia atras
+			
+			for (int i = filaActual; i > 0; i--) {
+				
+				torreSelected.setCasilla(casillasConNombre[i][columnaActual]);
+				
+				if(torreSelected.esMovimientoValido(i, columnaActual))
+
+				casillasConNombre[i][columnaActual].setBackground(Color.red);
+				
+				casillasConNombre[i][columnaActual].addMouseListener(new moverPieza());
+				
+			}
+			
+			//fila hacia un lado
+			
+			for (int i = columnaActual; i < 8; i++) {
+				
+				torreSelected.setCasilla(casillasConNombre[filaActual][i]);
+				
+				if(torreSelected.esMovimientoValido(filaActual, i)) {
+
+				casillasConNombre[filaActual][i].setBackground(Color.red);
+				
+				casillasConNombre[filaActual][i].addMouseListener(new moverPieza());
+				
+				}
+			}
+			
+			for (int i = columnaActual; i > 0; i--) {
+				
+				torreSelected.setCasilla(casillasConNombre[filaActual][i]);
+				
+				if(torreSelected.esMovimientoValido(filaActual, i)) {
+
+				casillasConNombre[filaActual][i].setBackground(Color.red);
+				
+				
+				casillasConNombre[filaActual][i].addMouseListener(new moverPieza());
+				
+				}
+				
+			}
+				 
+				 torreSelected.setHayPiezaColumna(false);
+				 torreSelected.setHayPiezaFila(false);
+			 }
+			 
+			 
+	 if(alfilSelected!=null) {
+				 
+				 for (int i = 0; i < 8; i++) {
+					 
+					for (int j = 0; j < 8; j++) {
+						
+						alfilSelected.setCasilla(casillasConNombre[i][j]);
+						
+						if(alfilSelected.esMovimientoValido(i, j)) {
+							
+							casillasConNombre[i][j].setBackground(Color.red);
+							
+							System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
+							
+							alfilActivado=true;
+							
+							casillasConNombre[i][j].addMouseListener(new moverPieza());
+							
+						}
+						
+					}
+				}
+			 }
+	 
+	 
+	 
+	 if(reySelected!=null) {
+		 
+		 for (int i = 0; i < 8; i++) {
+			 
+			for (int j = 0; j < 8; j++) {
+				
+				reySelected.setCasilla(casillasConNombre[i][j]);
+				
+				if(reySelected.esMovimientoValido(i, j)) {
+					
+					casillasConNombre[i][j].setBackground(Color.red);
+					
+					System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
+					
+					reyActivado=true;
+					
+					casillasConNombre[i][j].addMouseListener(new moverPieza());
+					
+				}
+				
+			}
+		}
+	 }
+	 
+	 if(damaSelected!=null) {
+		 
+		 for (int i = 0; i < 8; i++) {
+			 
+			for (int j = 0; j < 8; j++) {
+				
+				damaSelected.setCasilla(casillasConNombre[i][j]);
+				
+				if(damaSelected.esMovimientoValido(i, j)) {
+					
+					casillasConNombre[i][j].setBackground(Color.red);
+					
+					System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
+					
+					damaActivado=true;
+					
+					casillasConNombre[i][j].addMouseListener(new moverPieza());
+					
+				}
+				
+			}
+		}
+	 }
+			 
+				
+			/*	for (int i = 0; i < 8; i++) {
 					
 					for (int j = 0; j < 8; j++) {
 						
@@ -677,7 +899,7 @@ class LaminaTablero extends JPanel{
 				
 				torreSelected.setHayPiezaFila(false);
 				
-				}
+				}*/
 				
 			
 	
