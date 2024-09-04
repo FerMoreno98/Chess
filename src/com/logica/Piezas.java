@@ -1,5 +1,7 @@
 package com.logica;
 
+import java.awt.Component;
+
 import javax.swing.*;
 
 
@@ -15,6 +17,10 @@ public abstract class Piezas {
 	protected ImageIcon imagenPieza;
 	
 	protected JPanel casilla;
+	
+	protected boolean hayPiezaColumna=false;
+	
+	protected boolean hayPiezaFila=false;
 
 
 	
@@ -42,14 +48,6 @@ public abstract class Piezas {
 	
 	
 	
-	
-	public void mover(int nuevaFila, int nuevaColumna,JPanel nuevaCasilla) {
-		
-		this.filas=nuevaFila;
-		this.columnas=nuevaColumna;
-		this.casilla=nuevaCasilla;
-		
-	}
 	
 	public void mover(int nuevaFila, int nuevaColumna) {
 		
@@ -104,5 +102,30 @@ public abstract class Piezas {
 	}
 	
 	
+	public void setHayPiezaColumna(boolean hayPiezaColumna){
+		
+		this.hayPiezaColumna=hayPiezaColumna;
+	}
+	
+	public void setHayPiezaFila(boolean hayPiezaFila){
+		
+		this.hayPiezaColumna=hayPiezaFila;
+	}
+	
+	
+	
+    public boolean containsLabel(JPanel casilla) {
+        for (Component comp : casilla.getComponents()) {
+        	JLabel label=(JLabel)comp;
+        	
+            if (comp instanceof JLabel ) {
+            	
+            	
+            	System.out.println(label.getIcon());
+           return true;
+            }
+        }
+        return false;
+    }
 
 }

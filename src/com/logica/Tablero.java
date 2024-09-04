@@ -600,8 +600,11 @@ class LaminaTablero extends JPanel{
 						if(torreSelected!=null) {
 							
 							torreSelected.setCasilla(casillasConNombre[i][j]);
-							
+
 							if(torreSelected.esMovimientoValido(i, j)) {
+								
+								
+							
 							
 							casillasConNombre[i][j].setBackground(Color.red);
 							
@@ -611,7 +614,10 @@ class LaminaTablero extends JPanel{
 							
 							casillasConNombre[i][j].addMouseListener(new moverPieza());
 							
+							
+							
 							}
+
 						}
 						
 						
@@ -665,6 +671,13 @@ class LaminaTablero extends JPanel{
 					
 				}
 				
+				if(torreSelected!=null) {
+				
+				torreSelected.setHayPiezaColumna(false);
+				
+				torreSelected.setHayPiezaFila(false);
+				
+				}
 				
 			
 	
@@ -760,7 +773,7 @@ class LaminaTablero extends JPanel{
 	            casillasConNombre[torreSelected.getFilas()][torreSelected.getColumnas()].repaint();
 
 	            // Mover la pieza a la nueva posición (actualizar sus coordenadas internas)
-	            torreSelected.mover(nuevaFila, nuevaColumna,casillaSelected);
+	            torreSelected.mover(nuevaFila, nuevaColumna);
 	            
 	            
 	            // Añadir la imagen del peón a la nueva casilla
