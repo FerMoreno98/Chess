@@ -1159,6 +1159,8 @@ class LaminaTablero extends JPanel{
 				
 			for (int j = 0; j < 8; j++) {
 				
+				limpiarMouseListeners(casillasConNombre[i][j]);
+				
 				if(j%2==0) {
 					
 					casillasConNombre[i][j].setBackground(Color.white);
@@ -1177,6 +1179,8 @@ class LaminaTablero extends JPanel{
 			}else {
 			
 			for (int k = 0; k < 8; k++) {
+				
+				limpiarMouseListeners(casillasConNombre[i][k]);
 				
 				if(k%2!=0) {
 					
@@ -1197,6 +1201,14 @@ class LaminaTablero extends JPanel{
 		
 	}
 			}
+	
+	public void limpiarMouseListeners(JPanel casilla) {
+		
+		for(MouseListener ml: casilla.getMouseListeners()) {
+			
+			casilla.removeMouseListener(ml);
+		}
+	}
 	
 	}
 	
