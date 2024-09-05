@@ -651,13 +651,17 @@ class LaminaTablero extends JPanel{
 				
 				torreSelected.setCasilla(casillasConNombre[i][columnaActual]);
 				
-				if(torreSelected.esMovimientoValido(i, columnaActual)) {
+				
+				
+				if(torreSelected.esMovimientoValido(i, columnaActual)) {				
 
 				casillasConNombre[i][columnaActual].setBackground(Color.red);
 				
 				casillasConNombre[i][columnaActual].addMouseListener(new moverPieza());
 				}
 			}
+			
+			torreSelected.setCasilla(casillasConNombre[filaActual][columnaActual]);
 			
 			//columna hacia atras
 			
@@ -665,21 +669,32 @@ class LaminaTablero extends JPanel{
 				
 				torreSelected.setCasilla(casillasConNombre[i][columnaActual]);
 				
-				if(torreSelected.esMovimientoValido(i, columnaActual))
+			
+				
+				if(torreSelected.esMovimientoValido(i, columnaActual)) {
+					
+					
 
 				casillasConNombre[i][columnaActual].setBackground(Color.red);
 				
 				casillasConNombre[i][columnaActual].addMouseListener(new moverPieza());
+				}
 				
 			}
 			
-			//fila hacia un lado
+			torreSelected.setCasilla(casillasConNombre[filaActual][columnaActual]);
+			
+			//fila del oeste al este
 			
 			for (int i = columnaActual; i < 8; i++) {
 				
 				torreSelected.setCasilla(casillasConNombre[filaActual][i]);
 				
+			
+				
 				if(torreSelected.esMovimientoValido(filaActual, i)) {
+					
+				
 
 				casillasConNombre[filaActual][i].setBackground(Color.red);
 				
@@ -688,20 +703,30 @@ class LaminaTablero extends JPanel{
 				}
 			}
 			
+			torreSelected.setCasilla(casillasConNombre[filaActual][columnaActual]);
+			
+			//fila del este al oeste
 			for (int i = columnaActual; i > 0; i--) {
 				
 				torreSelected.setCasilla(casillasConNombre[filaActual][i]);
 				
+			
+				
 				if(torreSelected.esMovimientoValido(filaActual, i)) {
+					
+				
 
 				casillasConNombre[filaActual][i].setBackground(Color.red);
-				
-				
+			
 				casillasConNombre[filaActual][i].addMouseListener(new moverPieza());
 				
 				}
 				
 			}
+				
+				torreSelected.setCasilla(casillasConNombre[filaActual][columnaActual]);
+				
+				
 				 
 				 torreSelected.setHayPiezaColumna(false);
 				 torreSelected.setHayPiezaFila(false);
