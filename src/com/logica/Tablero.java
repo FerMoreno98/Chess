@@ -645,15 +645,15 @@ class LaminaTablero extends JPanel{
 			
 			int columnaActual=torreSelected.getColumnas();
 			
-			// columna hacia adelante
+			// columna de sur a norte
 			
 			for (int i = filaActual; i < 8; i++) {
 				
 				torreSelected.setCasilla(casillasConNombre[i][columnaActual]);
 				
-				
-				
-				if(torreSelected.esMovimientoValido(i, columnaActual)) {				
+				if(torreSelected.esMovimientoValido(i, columnaActual)) {
+					
+				System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][columnaActual]);
 
 				casillasConNombre[i][columnaActual].setBackground(Color.red);
 				
@@ -662,8 +662,10 @@ class LaminaTablero extends JPanel{
 			}
 			
 			torreSelected.setCasilla(casillasConNombre[filaActual][columnaActual]);
+			torreSelected.reset();
 			
-			//columna hacia atras
+			
+			//columna de norte a sur
 			
 			for (int i = filaActual; i > 0; i--) {
 				
@@ -673,7 +675,7 @@ class LaminaTablero extends JPanel{
 				
 				if(torreSelected.esMovimientoValido(i, columnaActual)) {
 					
-					
+				System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][columnaActual]);	
 
 				casillasConNombre[i][columnaActual].setBackground(Color.red);
 				
@@ -683,6 +685,7 @@ class LaminaTablero extends JPanel{
 			}
 			
 			torreSelected.setCasilla(casillasConNombre[filaActual][columnaActual]);
+			torreSelected.reset();
 			
 			//fila del oeste al este
 			
@@ -690,12 +693,10 @@ class LaminaTablero extends JPanel{
 				
 				torreSelected.setCasilla(casillasConNombre[filaActual][i]);
 				
-			
-				
 				if(torreSelected.esMovimientoValido(filaActual, i)) {
 					
-				
-
+				System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[filaActual][i]);
+					
 				casillasConNombre[filaActual][i].setBackground(Color.red);
 				
 				casillasConNombre[filaActual][i].addMouseListener(new moverPieza());
@@ -704,18 +705,18 @@ class LaminaTablero extends JPanel{
 			}
 			
 			torreSelected.setCasilla(casillasConNombre[filaActual][columnaActual]);
+			torreSelected.reset();
+			
 			
 			//fila del este al oeste
-			for (int i = columnaActual; i > 0; i--) {
+			for (int i = columnaActual; i >= 0; i--) {
 				
 				torreSelected.setCasilla(casillasConNombre[filaActual][i]);
-				
-			
-				
+								
 				if(torreSelected.esMovimientoValido(filaActual, i)) {
 					
-				
-
+				System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[filaActual][i]);
+					
 				casillasConNombre[filaActual][i].setBackground(Color.red);
 			
 				casillasConNombre[filaActual][i].addMouseListener(new moverPieza());
@@ -724,12 +725,11 @@ class LaminaTablero extends JPanel{
 				
 			}
 				
-				torreSelected.setCasilla(casillasConNombre[filaActual][columnaActual]);
+				torreSelected.reset();
 				
 				
 				 
-				 torreSelected.setHayPiezaColumna(false);
-				 torreSelected.setHayPiezaFila(false);
+				 
 			 }
 			 
 			 
@@ -1039,6 +1039,8 @@ class LaminaTablero extends JPanel{
 	            System.out.println("torre movido a la fila " + nuevaFila + " y columna " + nuevaColumna);
 
 	            // Restaurar los colores originales de las casillas
+	            
+	            //torreSelected.reset();
 	            restaurarColoresOriginales();
 	        }
 	        

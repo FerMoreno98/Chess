@@ -57,6 +57,12 @@ public abstract class Piezas {
 		
 	}
 	
+	public void reset() {
+		
+		hayPiezaColumna=false;
+		hayPiezaFila=false;
+	}
+	
 	
 	
 
