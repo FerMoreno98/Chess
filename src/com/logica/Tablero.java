@@ -251,7 +251,7 @@ class LaminaTablero extends JPanel{
 				
 				if(i==0 && j==2) {
 					
-					Piezas p=new Alfil("Negro",i,j,new ImageIcon(getClass().getResource("/images/alfil.gif")));
+					Piezas p=new Alfil("Negro",i,j,new ImageIcon(getClass().getResource("/images/alfil.gif")),casillasConNombre[i][j]);
 					
 					icono=new JLabel(p.getImagenPieza());
 					
@@ -266,7 +266,7 @@ class LaminaTablero extends JPanel{
 				
 				if(i==0 && j==5) {
 					
-					Piezas p=new Alfil("Negro",i,j,new ImageIcon(getClass().getResource("/images/alfil.gif")));
+					Piezas p=new Alfil("Negro",i,j,new ImageIcon(getClass().getResource("/images/alfil.gif")),casillasConNombre[i][j]);
 					
 					icono=new JLabel(p.getImagenPieza());
 					
@@ -444,7 +444,7 @@ class LaminaTablero extends JPanel{
 				
 				if(i==7 && k==5) {
 					
-					Piezas p=new Alfil("Blanco",i,k,new ImageIcon(getClass().getResource("/images/alfilBlanco.gif")));
+					Piezas p=new Alfil("Blanco",i,k,new ImageIcon(getClass().getResource("/images/alfilBlanco.gif")),casillasConNombre[i][k]);
 					
 					icono=new JLabel(p.getImagenPieza());
 					
@@ -462,7 +462,7 @@ class LaminaTablero extends JPanel{
 					
 					
 					
-					Piezas p=new Alfil("Blanco",i,k,new ImageIcon(getClass().getResource("/images/alfilBlanco.gif")));
+					Piezas p=new Alfil("Blanco",i,k,new ImageIcon(getClass().getResource("/images/alfilBlanco.gif")),casillasConNombre[i][k]);
 					
 					icono=new JLabel(p.getImagenPieza());
 					
@@ -653,21 +653,21 @@ class LaminaTablero extends JPanel{
 				
 				if(torreSelected.esMovimientoValido(i, columnaActual)) {
 					
-				System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][columnaActual]);
+					System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][columnaActual]);
 
-				casillasConNombre[i][columnaActual].setBackground(Color.red);
+					casillasConNombre[i][columnaActual].setBackground(Color.red);
 				
-				casillasConNombre[i][columnaActual].addMouseListener(new moverPieza());
+					casillasConNombre[i][columnaActual].addMouseListener(new moverPieza());
 				}
 			}
 			
-			torreSelected.setCasilla(casillasConNombre[filaActual][columnaActual]);
+			//torreSelected.setCasilla(casillasConNombre[filaActual][columnaActual]);
 			torreSelected.reset();
 			
 			
 			//columna de norte a sur
 			
-			for (int i = filaActual; i > 0; i--) {
+			for (int i = filaActual; i >= 0; i--) {
 				
 				torreSelected.setCasilla(casillasConNombre[i][columnaActual]);
 				
@@ -675,16 +675,16 @@ class LaminaTablero extends JPanel{
 				
 				if(torreSelected.esMovimientoValido(i, columnaActual)) {
 					
-				System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][columnaActual]);	
+					System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][columnaActual]);	
 
-				casillasConNombre[i][columnaActual].setBackground(Color.red);
+					casillasConNombre[i][columnaActual].setBackground(Color.red);
 				
-				casillasConNombre[i][columnaActual].addMouseListener(new moverPieza());
+					casillasConNombre[i][columnaActual].addMouseListener(new moverPieza());
 				}
 				
 			}
 			
-			torreSelected.setCasilla(casillasConNombre[filaActual][columnaActual]);
+			//torreSelected.setCasilla(casillasConNombre[filaActual][columnaActual]);
 			torreSelected.reset();
 			
 			//fila del oeste al este
@@ -695,16 +695,16 @@ class LaminaTablero extends JPanel{
 				
 				if(torreSelected.esMovimientoValido(filaActual, i)) {
 					
-				System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[filaActual][i]);
+					System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[filaActual][i]);
 					
-				casillasConNombre[filaActual][i].setBackground(Color.red);
+					casillasConNombre[filaActual][i].setBackground(Color.red);
 				
-				casillasConNombre[filaActual][i].addMouseListener(new moverPieza());
+					casillasConNombre[filaActual][i].addMouseListener(new moverPieza());
 				
 				}
 			}
 			
-			torreSelected.setCasilla(casillasConNombre[filaActual][columnaActual]);
+			//torreSelected.setCasilla(casillasConNombre[filaActual][columnaActual]);
 			torreSelected.reset();
 			
 			
@@ -715,11 +715,11 @@ class LaminaTablero extends JPanel{
 								
 				if(torreSelected.esMovimientoValido(filaActual, i)) {
 					
-				System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[filaActual][i]);
+					System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[filaActual][i]);
 					
-				casillasConNombre[filaActual][i].setBackground(Color.red);
+					casillasConNombre[filaActual][i].setBackground(Color.red);
 			
-				casillasConNombre[filaActual][i].addMouseListener(new moverPieza());
+					casillasConNombre[filaActual][i].addMouseListener(new moverPieza());
 				
 				}
 				
@@ -734,27 +734,139 @@ class LaminaTablero extends JPanel{
 			 
 			 
 	 if(alfilSelected!=null) {
+		 
+		 int filaActual=alfilSelected.getFilas();
+		 
+		 int columnaActual=alfilSelected.getColumnas();
+		 
+		 int contador;
+		
+		 alfilActivado=true;
+		 
+		 // de oeste a este de norte a sur
+		 
+		 contador=columnaActual;
 				 
-				 for (int i = 0; i < 8; i++) {
-					 
-					for (int j = 0; j < 8; j++) {
-						
-						alfilSelected.setCasilla(casillasConNombre[i][j]);
-						
-						if(alfilSelected.esMovimientoValido(i, j)) {
-							
-							casillasConNombre[i][j].setBackground(Color.red);
-							
-							System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
-							
-							alfilActivado=true;
-							
-							casillasConNombre[i][j].addMouseListener(new moverPieza());
-							
-						}
-						
-					}
+		for (int i = filaActual; i < 8; i++) {
+			
+			if(contador<=7 && contador>=0) {
+			
+			alfilSelected.setCasilla(casillasConNombre[i][contador]);
+			
+			if(alfilSelected.esMovimientoValido(i, contador)) {
+				
+				System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][contador]);
+				
+				casillasConNombre[i][contador].setBackground(Color.red);
+				
+				casillasConNombre[i][contador].addMouseListener(new moverPieza());
+			}
+			
+			
+			
+			contador++;
+			
+			}
+			
+		}
+			
+		
+		alfilSelected.reset();
+		
+		 // de este a oeste de sur a norte
+		
+		contador=columnaActual;
+		 
+		for (int i = filaActual; i >= 0; i--) {
+			
+			if(contador<=7 && contador>=0) {
+			
+			alfilSelected.setCasilla(casillasConNombre[i][contador]);
+			
+			if(alfilSelected.esMovimientoValido(i, contador)) {
+				
+				System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][contador]);
+				
+				casillasConNombre[i][contador].setBackground(Color.red);
+				
+				casillasConNombre[i][contador].addMouseListener(new moverPieza());
+			}
+			
+			
+				
+				contador--;
+				
 				}
+			
+			
+			
+		}
+			
+		
+		alfilSelected.reset();
+		
+		
+		 // este a oeste y de norte a sur
+		
+		contador=filaActual;
+		 
+		for (int i = columnaActual; i >= 0; i--) {
+			
+			if(contador<=7 && contador>=0) {
+			
+			alfilSelected.setCasilla(casillasConNombre[contador][i]);
+			
+			if(alfilSelected.esMovimientoValido(contador, i)) {
+				
+				System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[contador][i]);
+				
+				casillasConNombre[contador][i].setBackground(Color.red);
+				
+				casillasConNombre[contador][i].addMouseListener(new moverPieza());
+			}
+			
+			
+				
+				contador++;
+				
+				}
+			
+		}
+			
+		
+		alfilSelected.reset();
+		
+		
+		 // de oeste a este y de norte a sur
+		 
+		contador=filaActual;
+		
+		for (int i = columnaActual; i < 8; i++) {
+			
+			if(contador<=7 && contador>=0) {
+			
+			alfilSelected.setCasilla(casillasConNombre[contador][i]);
+			
+			if(alfilSelected.esMovimientoValido(contador, i)) {
+				
+				System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[contador][i]);
+				
+				casillasConNombre[contador][i].setBackground(Color.red);
+				
+				casillasConNombre[contador][i].addMouseListener(new moverPieza());
+			}
+			
+			
+				
+				contador--;
+				
+				}
+			
+		}
+			
+		
+		alfilSelected.reset();
+		 
 			 }
 	 
 	 
@@ -1065,7 +1177,7 @@ class LaminaTablero extends JPanel{
 	            casillaSelected.repaint();
 	            
 	            //añadimos el clientProperty al "nuevo" JLabel para poder añadirle de nuevo el primer mouselistener para que se pueda mover de nuevo
-	            nuevoIcono.putClientProperty("caballo", alfilSelected);
+	            nuevoIcono.putClientProperty("alfil", alfilSelected);
 	            nuevoIcono.addMouseListener(new ControladorMovimiento());
 
 	            // Desactivar el estado de peón activado
