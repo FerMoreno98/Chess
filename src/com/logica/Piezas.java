@@ -21,6 +21,8 @@ public abstract class Piezas {
 	protected boolean hayPiezaColumna=false;
 	
 	protected boolean hayPiezaFila=false;
+	
+	
 
 
 	
