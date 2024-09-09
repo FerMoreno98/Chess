@@ -1,5 +1,7 @@
 package com.logica;
 
+import java.awt.Component;
+
 import javax.swing.*;
 
 
@@ -16,36 +18,42 @@ public class Rey extends Piezas{
 		// TODO Auto-generated method stub
 		
 		
-		if(nuevaFila==filas+1 && nuevaColumna==columnas+1) {
+		if(containsLabel(casilla)&& !hayPieza) {
+			hayPieza=true;
+			return false;
+		}
+		
+		
+		if(nuevaFila==filas+1 && nuevaColumna==columnas+1 && !hayPieza ) {
 			return true;
 			
 		}
 		
-		if(nuevaFila==filas-1 && nuevaColumna==columnas-1) {
-			return true;
-			
-		}
-		
-		
-		
-		if(nuevaFila==filas+1 && nuevaColumna==columnas-1) {
-			return true;
-			
-		}
-		
-		if(nuevaFila==filas-1 && nuevaColumna==columnas+1) {
+		if(nuevaFila==filas-1 && nuevaColumna==columnas-1 && !hayPieza) {
 			return true;
 			
 		}
 		
 		
 		
-		if(nuevaFila==filas && nuevaColumna==columnas+1) {
+		if(nuevaFila==filas+1 && nuevaColumna==columnas-1 && !hayPieza) {
+			return true;
+			
+		}
+		
+		if(nuevaFila==filas-1 && nuevaColumna==columnas+1 && !hayPieza)  {
+			return true;
+			
+		}
+		
+		
+		
+		if(nuevaFila==filas && nuevaColumna==columnas+1 && !hayPieza) {
 			
 			return true;
 		}
 		
-		if(nuevaFila==filas && nuevaColumna==columnas-1) {
+		if(nuevaFila==filas && nuevaColumna==columnas-1 && !hayPieza) {
 			
 			return true;
 		}
@@ -53,12 +61,12 @@ public class Rey extends Piezas{
 		
 		
 		
-		if(nuevaFila==filas+1 && nuevaColumna==columnas) {
+		if(nuevaFila==filas+1 && nuevaColumna==columnas && !hayPieza) {
 			
 			return true;
 		}
 		
-		if(nuevaFila==filas-1 && nuevaColumna==columnas) {
+		if(nuevaFila==filas-1 && nuevaColumna==columnas && !hayPieza) {
 			
 			return true;
 		}
@@ -67,8 +75,32 @@ public class Rey extends Piezas{
 		return false;
 	
 	}
+	
+	   public boolean containsLabel(JPanel casilla) {
+	        for (Component comp : casilla.getComponents()) {
+	        	JLabel label=(JLabel)comp;
+	        	
+	            if (comp instanceof JLabel ) { 
+	            	
+	            	if(label.getIcon().equals(getImagenPieza())) {
+	            		
+	            		return false;
+	            	}
+	            	
+	            	//System.out.println(label.getIcon());
+	            	
+	           return true;
+	            }
+	        }
+	        return false;
+	    }
 
 	
+	public void reset() {
+		
+		hayPieza=false;
+	}
+
 
 
 }

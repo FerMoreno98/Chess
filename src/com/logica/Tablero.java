@@ -564,76 +564,111 @@ class LaminaTablero extends JPanel{
 			 
 			 if(peonSelected!=null) {
 				 
-				 if(peonSelected.getColor().equals("Negro")) {
-				 for (int i = peonSelected.getFilas(); i < 8; i++) {
+				 peonActivado=true;
+				 
+				 int filaActual=peonSelected.getFilas();
+				 
+				 int columnaActual=peonSelected.getColumnas();
+				 
+				 if(peonSelected.getColor().equals("Blanco")) {
+				 
+				 for (int i = filaActual; i > filaActual-3 ; i--) {
 					 
-					for (int j = peonSelected.getColumnas(); j < 8; j++) {
-						
-						peonSelected.setCasilla(casillasConNombre[i][j]);
-						
-						if(peonSelected.esMovimientoValido(i, j)) {
-							
-							casillasConNombre[i][j].setBackground(Color.red);
-							
-							System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
-							
-							peonActivado=true;
-							
-							casillasConNombre[i][j].addMouseListener(new moverPieza());
-							
-						}
-						}
-						
-					}
-				}else if(peonSelected.getColor().equals("Blanco")) {
-					 for (int i = peonSelected.getFilas(); i > 0; i--) {
+					 
+					 
+					 if(i>=0 && i<=7) {
 						 
-							for (int j = peonSelected.getColumnas(); j < 8; j++) {
-								
-								peonSelected.setCasilla(casillasConNombre[i][j]);
-								
-								if(peonSelected.esMovimientoValido(i, j)) {
-									
-									casillasConNombre[i][j].setBackground(Color.red);
-									
-									System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
-									
-									peonActivado=true;
-									
-									casillasConNombre[i][j].addMouseListener(new moverPieza());
-									
-								}
-								}
-								
-							}
-					
+						 peonSelected.setCasilla(casillasConNombre[i][columnaActual]);
+						 
+						 if(peonSelected.esMovimientoValido(i, columnaActual)) {
+							 
+								System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][columnaActual]);
+
+								casillasConNombre[i][columnaActual].setBackground(Color.red);
+							
+								casillasConNombre[i][columnaActual].addMouseListener(new moverPieza());
+							 
+						 }
+						 
+						 
+						 
+						 
+					 }
 					
 				}
+				 
+				 peonSelected.reset();
+				 
+				 }
+				 
+				 if(peonSelected.getColor().equals("Negro")) {
+					 
+				 for (int i = filaActual; i < filaActual+3 ; i++) {
+					 
+					 
+					 
+					 if(i>=0 && i<=7) {
+						 
+						 peonSelected.setCasilla(casillasConNombre[i][columnaActual]);
+						 
+						 if(peonSelected.esMovimientoValido(i, columnaActual)) {
+							 
+								System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][columnaActual]);
+
+								casillasConNombre[i][columnaActual].setBackground(Color.red);
+							
+								casillasConNombre[i][columnaActual].addMouseListener(new moverPieza());
+							 
+						 }
+						 
+						 
+						 
+						 
+					 }
+					
+				}
+				 
+				 peonSelected.reset();
+				 
+				 }
 				 }
 			 
 			 
 	 if(caballoSelected!=null) {
 				 
-				 for (int i = 0; i < 8; i++) {
-					 
-					for (int j = 0; j < 8; j++) {
+			caballoActivado=true;
+			
+			int filaActual=caballoSelected.getFilas();
+			
+			int columnaActual=caballoSelected.getColumnas();
+			
+			for (int i = filaActual-3; i < filaActual+3 ; i++) {
+				
+				for (int j = columnaActual-3; j < columnaActual+3; j++) {
+					
+					if(i>=0 && j>=0 && i<=7 && j<=7) {
+					
+					caballoSelected.setCasilla(casillasConNombre[i][j]);
+					
+					if(caballoSelected.esMovimientoValido(i, j)) {
 						
-						caballoSelected.setCasilla(casillasConNombre[i][j]);
+						System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
+
+						casillasConNombre[i][j].setBackground(Color.red);
+					
+						casillasConNombre[i][j].addMouseListener(new moverPieza());
 						
-						if(caballoSelected.esMovimientoValido(i, j)) {
-							
-							casillasConNombre[i][j].setBackground(Color.red);
-							
-							System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
-							
-							caballoActivado=true;
-							
-							casillasConNombre[i][j].addMouseListener(new moverPieza());
-							
-						}
 						
 					}
+					
+					caballoSelected.reset();
+					
+					
 				}
+				}
+				
+				
+			}
 				 }
 			 
 			 
@@ -873,25 +908,37 @@ class LaminaTablero extends JPanel{
 	 
 	 if(reySelected!=null) {
 		 
-		 for (int i = 0; i < 8; i++) {
+		 reyActivado=true;
+		 
+		 int filaActual=reySelected.getFilas();
+		 
+		 int columnaActual=reySelected.getColumnas();
+		 
+		 for (int i = filaActual-1; i <=filaActual+1 ; i++) {
 			 
-			for (int j = 0; j < 8; j++) {
-				
-				reySelected.setCasilla(casillasConNombre[i][j]);
-				
-				if(reySelected.esMovimientoValido(i, j)) {
-					
-					casillasConNombre[i][j].setBackground(Color.red);
-					
-					System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
-					
-					reyActivado=true;
-					
-					casillasConNombre[i][j].addMouseListener(new moverPieza());
-					
-				}
+			 for (int j = columnaActual-1; j <=columnaActual+1; j++) {
+				 
+				 if(i>=0 && i<=7 && j>=0 && j<=7) {
+					 
+					 reySelected.setCasilla(casillasConNombre[i][j]);
+				 
+				 if(reySelected.esMovimientoValido(i, j)) {
+					 
+						System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
+						
+						casillasConNombre[i][j].setBackground(Color.red);
+						
+						casillasConNombre[i][j].addMouseListener(new moverPieza());
+					 
+					 
+					 
+				 }
 				
 			}
+				 
+				 reySelected.reset();
+			 }
+			
 		}
 	 }
 	 
@@ -1439,7 +1486,7 @@ class LaminaTablero extends JPanel{
 	            casillaSelected.repaint();
 	            
 	            // añadimos el clientProperty al "nuevo" JLabel para poder añadirle de nuevo el primer mouselistener para que se pueda mover de nuevo
-	            nuevoIcono.putClientProperty("caballo", reySelected);
+	            nuevoIcono.putClientProperty("rey", reySelected);
 	            nuevoIcono.addMouseListener(new ControladorMovimiento());
 
 	            // Desactivar el estado de peón activado
