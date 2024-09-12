@@ -62,6 +62,8 @@ class LaminaTablero extends JPanel{
 	
 	private Piezas peonSelected, alfilSelected,torreSelected,caballoSelected,damaSelected,reySelected;
 	
+	
+	
 	public LaminaTablero(){
 		
 		setLayout(new BorderLayout());
@@ -220,7 +222,7 @@ class LaminaTablero extends JPanel{
 				
 				if(i==0 && j==1) {
 					
-					Piezas p=new Caballo("Negro",i,j,new ImageIcon(getClass().getResource("/images/caballo.gif")));
+					Piezas p=new Caballo("Negro",i,j,new ImageIcon(getClass().getResource("/images/caballo.gif")),casillasConNombre[i][j]);
 					
 					icono=new JLabel(p.getImagenPieza());
 					
@@ -234,7 +236,7 @@ class LaminaTablero extends JPanel{
 				
 				if(i==0 && j==6) {
 					
-					Piezas p=new Caballo("Negro",i,j,new ImageIcon(getClass().getResource("/images/caballo.gif")));
+					Piezas p=new Caballo("Negro",i,j,new ImageIcon(getClass().getResource("/images/caballo.gif")),casillasConNombre[i][j]);
 					
 					icono=new JLabel(p.getImagenPieza());
 					
@@ -414,7 +416,7 @@ class LaminaTablero extends JPanel{
 				if(i==7 && k==6) {
 					
 					
-					Piezas p=new Caballo("Blanco",i,k,new ImageIcon(getClass().getResource("/images/caballoblanco.gif")));
+					Piezas p=new Caballo("Blanco",i,k,new ImageIcon(getClass().getResource("/images/caballoblanco.gif")),casillasConNombre[i][k]);
 					
 					icono=new JLabel(p.getImagenPieza());
 					
@@ -428,7 +430,7 @@ class LaminaTablero extends JPanel{
 				
 				if(i==7 && k==1) {
 
-					Piezas p=new Caballo("Blanco",i,k,new ImageIcon(getClass().getResource("/images/caballoblanco.gif")));
+					Piezas p=new Caballo("Blanco",i,k,new ImageIcon(getClass().getResource("/images/caballoblanco.gif")),casillasConNombre[i][k]);
 					
 					icono=new JLabel(p.getImagenPieza());
 					
@@ -561,6 +563,8 @@ class LaminaTablero extends JPanel{
 			 reySelected=(Piezas)((JLabel)e.getSource()).getClientProperty("rey");
 			 damaSelected=(Piezas)((JLabel)e.getSource()).getClientProperty("dama");
 			 
+			
+			 
 			 
 			 if(peonSelected!=null) {
 				 
@@ -649,12 +653,18 @@ class LaminaTablero extends JPanel{
 					if(i>=0 && j>=0 && i<=7 && j<=7) {
 					
 					caballoSelected.setCasilla(casillasConNombre[i][j]);
+				
 					
 					if(caballoSelected.esMovimientoValido(i, j)) {
 						
 						System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
 
 						casillasConNombre[i][j].setBackground(Color.red);
+						
+						if(caballoSelected.puedeCapturar(casillasConNombre[i][j], caballoSelected)) {
+							
+							casillasConNombre[i][j].setBackground(Color.orange);
+						}
 					
 						casillasConNombre[i][j].addMouseListener(new moverPieza());
 						

@@ -1,5 +1,6 @@
 package com.logica;
 
+import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.*;
@@ -9,7 +10,7 @@ public class Caballo extends Piezas {
 
 	boolean hayPieza= false;
 	
-	public Caballo(String color, int filas, int columnas,ImageIcon imagen) {
+	public Caballo(String color, int filas, int columnas,ImageIcon imagen,JPanel panelTablero) {
 		super(color, filas, columnas,imagen);
 		// TODO Auto-generated constructor stub
 	}
@@ -19,10 +20,12 @@ public class Caballo extends Piezas {
 		// TODO Auto-generated method stub
 		
 		
-		if(containsLabel(casilla)&& !hayPieza) {
+		if(containsLabel(casilla)&& !hayPieza && !puedeCapturar(casilla,this)) {
 			hayPieza=true;
 			return false;
 		}
+		
+	
 		
 		if(nuevaFila==filas+2 && nuevaColumna==columnas+1 && !hayPieza) {
 			
@@ -70,6 +73,8 @@ public class Caballo extends Piezas {
 			
 		}
 		
+		
+		
 		return false;
 	}
 	
@@ -84,7 +89,7 @@ public class Caballo extends Piezas {
             		return false;
             	}
             	
-            	System.out.println(label.getIcon());
+            	//System.out.println(label.getIcon());
            return true;
             }
         }
@@ -96,6 +101,40 @@ public class Caballo extends Piezas {
 		
 		hayPieza=false;
 	}
+    
+    
+    public boolean puedeCapturar(JPanel casillas,Piezas p) {
+    	
+    	String [] clavePiezas= {"torre","caballo","alfil","rey","dama","peon"};
+    	
+		Component[] componentes = casillas.getComponents();
+		
+		for (Component componente : componentes) {
+			
+		    if (componente instanceof JLabel) {
+		    	
+		        JLabel label = (JLabel) componente;
+		        
+		        for(String clave:clavePiezas) {
+		        	
+		        Piezas pieza = (Piezas) label.getClientProperty(clave);
+		        
+		        if (pieza != null && !pieza.getColor().equals(p.getColor())) {
+		           
+		           // System.out.println("Pieza encontrada en el JLabel: " + pieza);
+		            
+		            //casillas.setBackground(Color.orange);
+		        	
+		        	return true;
+		        }
+		    }
+		        
+		        }
+		      
+		}
+		
+		return false;
+    }
 
 
 
