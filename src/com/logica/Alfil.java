@@ -19,13 +19,23 @@ public class Alfil extends Piezas {
 	@Override
 	public boolean esMovimientoValido(int nuevaFila, int nuevaColumna) {
 		
-		System.out.println("hay una pieza en el camino"+ hayPieza);
+		//System.out.println("hay una pieza en el camino"+ hayPieza);
+		
+		if(containsLabel(casilla) && puedeCapturar(casilla,this) && !hayPieza) {
+				
+			hayPieza=true;
+			return true;
+			
+			
+		}
 		
 		
-		if(containsLabel(casilla)&& !hayPieza) {
+		if(containsLabel(casilla)) {
 			hayPieza=true;
 			return false;
 		}
+		
+	
 		
 		if(filas==nuevaFila+1 && columnas==nuevaColumna+1 && !hayPieza) {
 			return true;
@@ -190,6 +200,42 @@ public class Alfil extends Piezas {
 		
 		hayPieza=false;
 	}
+	
+	
+	 
+    public boolean puedeCapturar(JPanel casillas,Piezas p) {
+    	
+    	String [] clavePiezas= {"torre","caballo","alfil","rey","dama","peon"};
+    	
+		Component[] componentes = casillas.getComponents();
+		
+		for (Component componente : componentes) {
+			
+		    if (componente instanceof JLabel) {
+		    	
+		        JLabel label = (JLabel) componente;
+		        
+		        for(String clave:clavePiezas) {
+		        	
+		        Piezas pieza = (Piezas) label.getClientProperty(clave);
+		        
+		        if (pieza != null && !pieza.getColor().equals(p.getColor())) {
+		           
+		           System.out.println("Pieza encontrada en el JLabel: " + pieza);
+		            
+		           
+		            //casillas.setBackground(Color.orange);
+		        	
+		        	return true;
+		        }
+		    }
+		        
+		        }
+		      
+		}
+		
+		return false;
+    }
 
 
 }

@@ -6,9 +6,7 @@ import javax.swing.*;
 
 public class Torre extends Piezas {
 	
-	boolean hayPiezaColumna=false;
-	
-	boolean hayPiezaFila=false;
+	boolean hayPieza=false;
 
 	
     public Torre(String color, int filas, int columnas, ImageIcon imagen, JPanel panelTablero) {
@@ -17,23 +15,28 @@ public class Torre extends Piezas {
     }
     
     public void reset() {
-    	hayPiezaColumna=false;
-		hayPiezaFila=false;
+    	hayPieza=false;
     }
 
     @Override
     public boolean esMovimientoValido(int nuevaFila, int nuevaColumna) {
     	
   
-    	System.out.println("el valor de hayPiezaColumna es: "+ hayPiezaColumna);
+   
     	
-    	System.out.println("el valor de hayPiezaFila es: "+ hayPiezaFila);
+    	if(containsLabel(casilla) && puedeCapturar(casilla,this) && !hayPieza) {
+			
+			hayPieza=true;
+			return true;
+			
+			
+		}
 
-    	if(nuevaColumna==columnas && !hayPiezaColumna) {
+    	if(nuevaColumna==columnas && !hayPieza) {
     		
     		if(containsLabel(casilla)) {
     			
-    			hayPiezaColumna=true;
+    			hayPieza=true;
     			return false;
     		}
     		
@@ -43,11 +46,11 @@ public class Torre extends Piezas {
 			return true;
 		}
 		
-		if(nuevaFila==filas && !hayPiezaFila ) {
+		if(nuevaFila==filas && !hayPieza ) {
 			
 			if(containsLabel(casilla)) {
 				
-				hayPiezaFila=true;
+				hayPieza=true;
     			
     			return false;
     		}
@@ -78,6 +81,41 @@ public class Torre extends Piezas {
             }
         }
         return false;
+    }
+    
+    
+    
+   public boolean puedeCapturar(JPanel casillas,Piezas p) {
+    	
+    	String [] clavePiezas= {"torre","caballo","alfil","rey","dama","peon"};
+    	
+		Component[] componentes = casillas.getComponents();
+		
+		for (Component componente : componentes) {
+			
+		    if (componente instanceof JLabel) {
+		    	
+		        JLabel label = (JLabel) componente;
+		        
+		        for(String clave:clavePiezas) {
+		        	
+		        Piezas pieza = (Piezas) label.getClientProperty(clave);
+		        
+		        if (pieza != null && !pieza.getColor().equals(p.getColor())) {
+		           
+		           // System.out.println("Pieza encontrada en el JLabel: " + pieza);
+		            
+		            //casillas.setBackground(Color.orange);
+		        	
+		        	return true;
+		        }
+		    }
+		        
+		        }
+		      
+		}
+		
+		return false;
     }
     
     

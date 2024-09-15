@@ -700,7 +700,17 @@ class LaminaTablero extends JPanel{
 					
 					System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][columnaActual]);
 
-					casillasConNombre[i][columnaActual].setBackground(Color.red);
+					
+					
+					if(torreSelected.puedeCapturar(casillasConNombre[i][columnaActual], torreSelected)) {
+						
+						casillasConNombre[i][columnaActual].setBackground(Color.orange);
+						
+					}else {
+						
+						casillasConNombre[i][columnaActual].setBackground(Color.red);
+						
+					}
 				
 					casillasConNombre[i][columnaActual].addMouseListener(new moverPieza());
 				}
@@ -722,7 +732,15 @@ class LaminaTablero extends JPanel{
 					
 					System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][columnaActual]);	
 
-					casillasConNombre[i][columnaActual].setBackground(Color.red);
+					if(torreSelected.puedeCapturar(casillasConNombre[i][columnaActual], torreSelected)) {
+						
+						casillasConNombre[i][columnaActual].setBackground(Color.orange);
+						
+					}else {
+						
+						casillasConNombre[i][columnaActual].setBackground(Color.red);
+						
+					}
 				
 					casillasConNombre[i][columnaActual].addMouseListener(new moverPieza());
 				}
@@ -742,7 +760,16 @@ class LaminaTablero extends JPanel{
 					
 					System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[filaActual][i]);
 					
-					casillasConNombre[filaActual][i].setBackground(Color.red);
+					
+					
+					if(torreSelected.puedeCapturar(casillasConNombre[filaActual][i], torreSelected)) {
+						
+						casillasConNombre[filaActual][i].setBackground(Color.orange);
+					}else {
+						
+						casillasConNombre[filaActual][i].setBackground(Color.red);
+						
+					}
 				
 					casillasConNombre[filaActual][i].addMouseListener(new moverPieza());
 				
@@ -762,7 +789,14 @@ class LaminaTablero extends JPanel{
 					
 					System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[filaActual][i]);
 					
-					casillasConNombre[filaActual][i].setBackground(Color.red);
+					if(torreSelected.puedeCapturar(casillasConNombre[filaActual][i], torreSelected)) {
+						
+						casillasConNombre[filaActual][i].setBackground(Color.orange);
+					}else {
+						
+						casillasConNombre[filaActual][i].setBackground(Color.red);
+						
+					}
 			
 					casillasConNombre[filaActual][i].addMouseListener(new moverPieza());
 				
@@ -802,7 +836,16 @@ class LaminaTablero extends JPanel{
 				
 				System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][contador]);
 				
-				casillasConNombre[i][contador].setBackground(Color.red);
+				
+				
+				if(alfilSelected.puedeCapturar(casillasConNombre[i][contador], alfilSelected)) {
+					
+					casillasConNombre[i][contador].setBackground(Color.orange);
+				}else {
+					
+					casillasConNombre[i][contador].setBackground(Color.red);
+					
+				}
 				
 				casillasConNombre[i][contador].addMouseListener(new moverPieza());
 			}
@@ -832,7 +875,15 @@ class LaminaTablero extends JPanel{
 				
 				System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][contador]);
 				
-				casillasConNombre[i][contador].setBackground(Color.red);
+				
+				if(alfilSelected.puedeCapturar(casillasConNombre[i][contador], alfilSelected)) {
+					
+					casillasConNombre[i][contador].setBackground(Color.orange);
+				}else {
+					
+					casillasConNombre[i][contador].setBackground(Color.red);
+					
+				}
 				
 				casillasConNombre[i][contador].addMouseListener(new moverPieza());
 			}
@@ -865,7 +916,16 @@ class LaminaTablero extends JPanel{
 				
 				System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[contador][i]);
 				
-				casillasConNombre[contador][i].setBackground(Color.red);
+				
+				
+				if(alfilSelected.puedeCapturar(casillasConNombre[contador][i], alfilSelected)) {
+					
+					casillasConNombre[contador][i].setBackground(Color.orange);
+				}else {
+					
+					casillasConNombre[contador][i].setBackground(Color.red);
+					
+				}
 				
 				casillasConNombre[contador][i].addMouseListener(new moverPieza());
 			}
@@ -896,7 +956,15 @@ class LaminaTablero extends JPanel{
 				
 				System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[contador][i]);
 				
-				casillasConNombre[contador][i].setBackground(Color.red);
+				
+				
+				if(alfilSelected.puedeCapturar(casillasConNombre[contador][i], alfilSelected)) {
+					
+					casillasConNombre[contador][i].setBackground(Color.orange);
+				}else {
+					
+					casillasConNombre[contador][i].setBackground(Color.red);
+				}
 				
 				casillasConNombre[contador][i].addMouseListener(new moverPieza());
 			}
@@ -936,7 +1004,17 @@ class LaminaTablero extends JPanel{
 					 
 						System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][j]);
 						
-						casillasConNombre[i][j].setBackground(Color.red);
+						
+						
+						if(reySelected.puedeCapturar(casillasConNombre[i][j], reySelected)) {
+							
+							casillasConNombre[i][j].setBackground(Color.orange);
+							
+						}else {
+							
+							casillasConNombre[i][j].setBackground(Color.red);
+							
+						}
 						
 						casillasConNombre[i][j].addMouseListener(new moverPieza());
 					 
@@ -972,7 +1050,15 @@ class LaminaTablero extends JPanel{
 					
 					System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][columnaActual]);
 
-					casillasConNombre[i][columnaActual].setBackground(Color.red);
+					
+					
+					if(damaSelected.puedeCapturar(casillasConNombre[i][columnaActual], damaSelected)) {
+						
+						casillasConNombre[i][columnaActual].setBackground(Color.orange);
+					}else {
+						
+						casillasConNombre[i][columnaActual].setBackground(Color.red);
+					}
 				
 					casillasConNombre[i][columnaActual].addMouseListener(new moverPieza());
 				}
@@ -994,7 +1080,13 @@ class LaminaTablero extends JPanel{
 					
 					System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][columnaActual]);	
 
-					casillasConNombre[i][columnaActual].setBackground(Color.red);
+					if(damaSelected.puedeCapturar(casillasConNombre[i][columnaActual], damaSelected)) {
+						
+						casillasConNombre[i][columnaActual].setBackground(Color.orange);
+					}else {
+						
+						casillasConNombre[i][columnaActual].setBackground(Color.red);
+					}
 				
 					casillasConNombre[i][columnaActual].addMouseListener(new moverPieza());
 				}
@@ -1014,7 +1106,16 @@ class LaminaTablero extends JPanel{
 					
 					System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[filaActual][i]);
 					
-					casillasConNombre[filaActual][i].setBackground(Color.red);
+					
+					
+					if(damaSelected.puedeCapturar(casillasConNombre[filaActual][i], damaSelected)) {
+						
+						casillasConNombre[filaActual][i].setBackground(Color.orange);
+						
+					}else {
+						
+						casillasConNombre[filaActual][i].setBackground(Color.red);
+					}
 				
 					casillasConNombre[filaActual][i].addMouseListener(new moverPieza());
 				
@@ -1034,7 +1135,14 @@ class LaminaTablero extends JPanel{
 					
 					System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[filaActual][i]);
 					
-					casillasConNombre[filaActual][i].setBackground(Color.red);
+					if(damaSelected.puedeCapturar(casillasConNombre[filaActual][i], damaSelected)) {
+						
+						casillasConNombre[filaActual][i].setBackground(Color.orange);
+						
+					}else {
+						
+						casillasConNombre[filaActual][i].setBackground(Color.red);
+					}
 			
 					casillasConNombre[filaActual][i].addMouseListener(new moverPieza());
 				
@@ -1057,7 +1165,17 @@ class LaminaTablero extends JPanel{
 							
 							System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][contador]);
 							
-							casillasConNombre[i][contador].setBackground(Color.red);
+							
+							
+							if(damaSelected.puedeCapturar(casillasConNombre[i][contador], damaSelected)) {
+								
+								casillasConNombre[i][contador].setBackground(Color.orange);
+								
+							}else {
+								
+								casillasConNombre[i][contador].setBackground(Color.red);
+								
+							}
 							
 							casillasConNombre[i][contador].addMouseListener(new moverPieza());
 						}
@@ -1087,7 +1205,15 @@ class LaminaTablero extends JPanel{
 							
 							System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[i][contador]);
 							
-							casillasConNombre[i][contador].setBackground(Color.red);
+							if(damaSelected.puedeCapturar(casillasConNombre[i][contador], damaSelected)) {
+								
+								casillasConNombre[i][contador].setBackground(Color.orange);
+								
+							}else {
+								
+								casillasConNombre[i][contador].setBackground(Color.red);
+								
+							}
 							
 							casillasConNombre[i][contador].addMouseListener(new moverPieza());
 						}
@@ -1120,7 +1246,15 @@ class LaminaTablero extends JPanel{
 							
 							System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[contador][i]);
 							
-							casillasConNombre[contador][i].setBackground(Color.red);
+							if(damaSelected.puedeCapturar(casillasConNombre[contador][i], damaSelected)) {
+								
+								casillasConNombre[contador][i].setBackground(Color.orange);
+								
+							}else {
+								
+								casillasConNombre[contador][i].setBackground(Color.red);
+								
+							}
 							
 							casillasConNombre[contador][i].addMouseListener(new moverPieza());
 						}
@@ -1151,7 +1285,15 @@ class LaminaTablero extends JPanel{
 							
 							System.out.println("Se deben iluminar de rojo los puntos "+ nombreCasilla[contador][i]);
 							
-							casillasConNombre[contador][i].setBackground(Color.red);
+							if(damaSelected.puedeCapturar(casillasConNombre[contador][i], damaSelected)) {
+								
+								casillasConNombre[contador][i].setBackground(Color.orange);
+								
+							}else {
+								
+								casillasConNombre[contador][i].setBackground(Color.red);
+								
+							}
 							
 							casillasConNombre[contador][i].addMouseListener(new moverPieza());
 						}
