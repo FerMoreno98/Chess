@@ -603,6 +603,23 @@ class LaminaTablero extends JPanel{
 				 
 				 peonSelected.reset();
 				 
+				 
+					for (int i = columnaActual-1; i < columnaActual+2; i++) {
+						
+						if(i>=0 && i<=7 && filaActual>0 && filaActual<8) {
+						
+						peonSelected.setCasilla(casillasConNombre[filaActual-1][i]);
+						
+						if(peonSelected.puedeCapturar(casillasConNombre[filaActual-1][i], peonSelected) && i!=columnaActual) {
+							
+							casillasConNombre[filaActual-1][i].setBackground(Color.orange);
+						}
+						
+					}
+						}
+					
+					peonSelected.reset();
+				 
 				 }
 				 
 				 if(peonSelected.getColor().equals("Negro")) {
@@ -633,6 +650,22 @@ class LaminaTablero extends JPanel{
 				}
 				 
 				 peonSelected.reset();
+				 
+			for (int i = columnaActual-1; i < columnaActual+2; i++) {
+				
+				if(i>=0 && i<=7 && filaActual>0 && filaActual<8) {
+				
+				peonSelected.setCasilla(casillasConNombre[filaActual+1][i]);
+				
+				if(peonSelected.puedeCapturar(casillasConNombre[filaActual+1][i], peonSelected) && i!=columnaActual) {
+					
+					casillasConNombre[filaActual+1][i].setBackground(Color.orange);
+				}
+				
+			}
+				}
+			
+			peonSelected.reset();
 				 
 				 }
 				 }

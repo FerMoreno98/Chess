@@ -25,6 +25,19 @@ public class Peon extends Piezas {
 		}
 		
 		if(color.equals("Blanco")) {
+			
+			   if(nuevaColumna==columnas+1 && nuevaFila==filas-1 && hayPieza && puedeCapturar(casilla, this)) {
+			    	
+			    	return true;
+			    	
+			    }
+			   
+			   if(nuevaColumna==columnas-1 && nuevaFila==filas-1 && hayPieza && puedeCapturar(casilla,this)) {
+			    	
+			    	return true;
+			    	
+			    }
+			
 	    if (nuevaColumna != columnas) {
 	        return false;
 	    }
@@ -41,7 +54,21 @@ public class Peon extends Piezas {
 	    if (diferenciaFila == -2 && filas == 6 && !hayPieza) {
 	        return true;
 	    }
+	    
+	 
 		}else {
+			
+			   if(nuevaColumna==columnas+1 && nuevaFila==filas+1 && hayPieza && puedeCapturar(casilla, this)) {
+			    	
+			    	return true;
+			    	
+			    }
+			   
+			   if(nuevaColumna==columnas-1 && nuevaFila==filas+1 && hayPieza && puedeCapturar(casilla,this)) {
+			    	
+			    	return true;
+			    	
+			    }
 			
 		    if (nuevaColumna != columnas) {
 		        return false;
